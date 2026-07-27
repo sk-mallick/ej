@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Englishjibi student and parent hub with portals, class links, study resources, and official channels." />
-  <meta name="theme-color" content="#0E2A54" />
+  <meta name="theme-color" content="#040914" />
   <title>Englishjibi | Student & Parent Hub</title>
 
   <!-- Open Graph -->
@@ -17,7 +17,6 @@
   <link rel="icon" type="image/webp" sizes="32x32" href="https://sk-mallick.github.io/englishjibi-classes/img/icon.webp" />
   <link rel="apple-touch-icon" sizes="180x180" href="https://sk-mallick.github.io/englishjibi-classes/img/icon.webp" />
 
-  <!-- Fonts and Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -28,15 +27,11 @@
       --card-bg: #ffffff;
       --text-main: #0f172a;
       --text-muted: #64748b;
-      --primary: #2563eb;
-      --primary-hover: #1d4ed8;
-      --brand-dark: #0e2a54;
-      --brand-accent: #f59e0b;
       --border: #e2e8f0;
       --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-      --shadow-md: 0 10px 25px -5px rgba(37, 99, 235, 0.1);
-      --shadow-lg: 0 25px 50px -12px rgba(37, 99, 235, 0.2);
-      --radius: 20px;
+      --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.15);
+      --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      --radius: 16px; /* Slightly smaller radius for dashboard */
     }
 
     * { box-sizing: border-box; }
@@ -45,204 +40,203 @@
     body {
       margin: 0;
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background: linear-gradient(-45deg, #ff9a9e, #fecfef, #a1c4fd, #c2e9fb);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
-      color: var(--text-main);
-      min-height: 100vh;
-    }
-
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    a { color: inherit; text-decoration: none; }
-    
-    .wrap { 
-      width: min(1120px, calc(100% - 32px)); 
-      margin: 0 auto; 
-      padding: 32px 0 64px; 
-    }
-
-    /* Hero Section */
-    .hero {
+      background-color: #040914; 
+      color: #ffffff;
+      height: 100vh; /* Fixed panel height */
+      overflow: hidden; /* No scrolling */
       position: relative;
-      overflow: hidden;
-      background: linear-gradient(135deg, var(--brand-dark) 0%, #173b75 50%, #08182f 100%);
-      color: #fff;
-      border-radius: 28px;
-      padding: 40px;
-      box-shadow: var(--shadow-md);
-      margin-bottom: 48px;
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      right: -80px;
-      top: -80px;
-      width: 300px;
-      height: 300px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(245,158,11,0.2) 0%, transparent 70%);
       z-index: 0;
     }
 
-    .hero-content {
+    body::before {
+      content: "";
+      position: fixed;
+      top: -20%; left: -20%; right: -20%; bottom: -20%; 
+      z-index: -1;
+      background: linear-gradient(
+        120deg,
+        #040914 0%,
+        #1e3a8a 25%,
+        #0d9488 50%,
+        #b45309 75%,
+        #040914 100%
+      );
+      background-size: 300% 300%;
+      animation: geminiResponse 12s ease-in-out infinite alternate;
+      filter: blur(80px); 
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    @keyframes geminiResponse {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 50% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    .wrap { 
+      width: 100%; 
+      max-width: 1500px; /* Wide panel view */
+      margin: 0 auto; 
+      padding: 2vh 2vw; /* Responsive panel padding */
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      gap: 2vh; /* Space between hero and grid */
+      opacity: 0;
+      animation: contentFadeIn 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    }
+
+    @keyframes contentFadeIn {
+      to { opacity: 1; }
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .hero {
       position: relative;
-      z-index: 1;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      border-radius: var(--radius);
+      padding: 1.5vh 24px;
+      box-shadow: var(--shadow-md);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 24px;
-      flex-wrap: wrap;
+      flex-shrink: 0; /* Prevents hero from squishing */
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 16px;
     }
 
     .brand img {
-      width: 72px;
-      height: 72px;
-      border-radius: 20px;
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
       object-fit: cover;
-      background: rgba(255,255,255,0.1);
-      border: 2px solid rgba(255,255,255,0.2);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
     }
 
     .brand-text h1 {
       margin: 0;
-      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-size: clamp(1.2rem, 2.5vw, 1.8rem);
       font-weight: 800;
       letter-spacing: -0.02em;
     }
 
     .brand-text p {
-      margin: 8px 0 0;
-      color: rgba(255,255,255,0.85);
-      max-width: 60ch;
-      line-height: 1.6;
-      font-size: 1rem;
+      margin: 4px 0 0;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      max-width: 55ch;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .hero-badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 12px 18px;
+      padding: 8px 16px;
       border-radius: 99px;
-      background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.2);
-      font-size: 0.95rem;
-      font-weight: 500;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      color: #475569;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .hero-badge i { color: #f59e0b; }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      flex-grow: 1;
+      min-height: 0; /* Allows inner content to size correctly */
     }
 
-    .hero-badge i { color: var(--brand-accent); }
-
-    .hero-actions {
+    .section { 
       display: flex;
-      gap: 16px;
-      margin-top: 32px;
-      position: relative;
-      z-index: 1;
+      flex-direction: column;
+      height: 100%;
     }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 14px 24px;
-      border-radius: 14px;
-      font-weight: 700;
-      font-size: 1rem;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      cursor: pointer;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #10b981, #059669);
-      color: #fff;
-      box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
-    }
-
-    .btn:hover { transform: translateY(-3px); }
-    .btn-primary:hover { box-shadow: 0 15px 25px rgba(16, 185, 129, 0.4); }
-
-    /* Sections & Grids */
-    .section { margin-bottom: 56px; }
     
     .section-head { 
-      margin-bottom: 24px; 
-      padding-left: 8px;
+      margin-bottom: 10px; 
+      padding-left: 4px;
+      flex-shrink: 0;
     }
     
     .section-head h2 { 
-      margin: 0 0 8px; 
-      font-size: 1.5rem; 
+      margin: 0 0 4px; 
+      font-size: 1.1rem; 
       font-weight: 700;
-      color: var(--brand-dark);
+      color: #fff;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
     
     .section-head p { 
       margin: 0; 
-      color: var(--text-muted); 
-      font-size: 1.05rem; 
+      color: rgba(255, 255, 255, 0.7); 
+      font-size: 0.85rem; 
     }
 
-    .grid { 
-      display: grid; 
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-      gap: 24px; 
+    .card-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex-grow: 1;
+      overflow-y: auto; /* Fallback scroll */
+      padding-right: 4px;
     }
 
-    .grid-single {
-      grid-template-columns: repeat(auto-fit, minmax(320px, 450px));
-    }
-
-    /* Cards */
     .card {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 28px;
+      padding: 14px 18px;
       box-shadow: var(--shadow-sm);
-      transition: all 0.3s ease;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
       display: flex;
       flex-direction: column;
       position: relative;
-      overflow: hidden;
+      color: var(--text-main);
+      flex: 1; /* Stretch to fill column height evenly */
     }
 
     .card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-lg);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
       border-color: #cbd5e1;
     }
 
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
     .card-icon {
-      width: 54px;
-      height: 54px;
-      border-radius: 16px;
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 24px;
-      margin-bottom: 20px;
+      font-size: 16px;
       color: white;
     }
 
-    /* Specific Card Colors */
+    /* Vibrant icons */
     .icon-student { background: linear-gradient(135deg, #3b82f6, #2563eb); }
     .icon-admin { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
     .icon-bank { background: linear-gradient(135deg, #10b981, #059669); }
@@ -251,115 +245,127 @@
     .icon-li { background: linear-gradient(135deg, #0ea5e9, #0284c7); }
     .icon-tg { background: linear-gradient(135deg, #06b6d4, #0891b2); }
 
-    .card-top { flex-grow: 1; }
-    
-    .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 16px;
-    }
-
     .pill {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 6px 12px;
+      gap: 4px;
+      padding: 4px 10px;
       border-radius: 99px;
       background: #f1f5f9;
+      border: 1px solid #e2e8f0;
       color: #475569;
-      font-size: 0.8rem;
-      font-weight: 600;
+      font-size: 0.75rem;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
     }
 
-    .pill i { font-size: 0.85rem; }
-
     .card h3 { 
-      margin: 0 0 10px; 
-      font-size: 1.25rem; 
+      margin: 0 0 4px; 
+      font-size: 1.05rem; 
       font-weight: 700;
-      color: var(--text-main);
     }
     
     .card p { 
-      margin: 0 0 24px; 
+      margin: 0 0 10px; 
       color: var(--text-muted); 
-      line-height: 1.6; 
-      font-size: 0.95rem; 
+      line-height: 1.4; 
+      font-size: 0.85rem; 
+      display: -webkit-box;
+      -webkit-line-clamp: 2; /* Truncates text on small vertical spaces */
+      -webkit-box-orient: vertical;  
+      overflow: hidden;
     }
-
-    .url-box {
-      background: #f8fafc;
-      border: 1px dashed #cbd5e1;
-      border-radius: 10px;
-      padding: 10px 14px;
-      font-family: ui-monospace, monospace;
-      font-size: 0.85rem;
-      color: #475569;
-      overflow-wrap: anywhere;
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    
-    .url-box i { color: #94a3b8; }
 
     .open-link {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      padding: 14px;
-      border-radius: 12px;
-      background: var(--primary);
+      gap: 8px;
+      padding: 10px;
+      border-radius: 10px;
+      background: #2563eb;
       color: #fff;
       font-weight: 600;
+      font-size: 0.9rem;
       transition: all 0.2s ease;
+      border: none;
       width: 100%;
+      margin-top: auto; /* Push to bottom of card */
     }
     
-    .open-link:hover { 
-      background: var(--primary-hover); 
-      transform: translateY(-2px);
-    }
+    .open-link:hover { background: #1d4ed8; }
 
     .footer {
-      margin-top: 40px;
       text-align: center;
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      display: flex;
-      flex-direction: column;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.8rem;
+      flex-shrink: 0;
+    }
+
+    /* Scroll fallback for tablets/mobile */
+    @media (max-width: 1024px) {
+      body { overflow-y: auto; height: auto; }
+      .wrap { height: auto; overflow: visible; padding-bottom: 32px;}
+      .dashboard-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+      .card { min-height: 160px; }
+    }
+
+    @media (max-width: 700px) {
+      .dashboard-grid { grid-template-columns: 1fr; }
+      .hero { flex-direction: column; align-items: flex-start; gap: 12px; padding: 20px; }
+      .brand-text p { white-space: normal; }
+      .hero-badge { align-self: flex-start; }
+    }
+
+    /* Modal Styles (Kept identical) */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(4, 9, 20, 0.8);
+      backdrop-filter: blur(5px);
+      display: none;
       align-items: center;
-      gap: 8px;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      animation: fadeIn 0.2s forwards;
     }
-
-    /* Responsive Adjustments */
-    @media (max-width: 900px) {
-      .hero-content { flex-direction: column; align-items: flex-start; }
-      .brand { flex-direction: column; align-items: flex-start; gap: 16px; }
-      .hero { padding: 32px; }
+    @keyframes fadeIn { to { opacity: 1; } }
+    
+    .modal-content {
+      background: #fff;
+      padding: 32px;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 400px;
+      color: var(--text-main);
+      box-shadow: var(--shadow-lg);
+      transform: translateY(20px);
+      animation: slideUp 0.3s forwards;
     }
-
-    @media (max-width: 600px) {
-      .wrap { padding: 16px 0 40px; }
-      .hero { padding: 24px; border-radius: 20px; }
-      .brand img { width: 60px; height: 60px; }
-      .hero-actions { flex-direction: column; width: 100%; }
-      .btn { width: 100%; }
-      .card { padding: 20px; }
-      .card-header { flex-direction: column; gap: 12px; }
-      .card-icon { margin-bottom: 0; }
+    @keyframes slideUp { to { transform: translateY(0); } }
+    
+    .modal-content h3 { margin: 0 0 12px; display: flex; align-items: center; gap: 10px; font-size: 1.4rem; }
+    .modal-content p { color: var(--text-muted); margin: 0 0 20px; line-height: 1.5; font-size: 0.95rem; }
+    
+    .modal-content input {
+      width: 100%; padding: 14px; border-radius: 12px;
+      border: 1px solid var(--border); font-size: 1rem;
+      margin-bottom: 12px; outline: none; transition: border-color 0.2s;
     }
+    .modal-content input:focus { border-color: #2563eb; }
+    
+    .modal-error { color: #dc2626; font-size: 0.9rem; margin-bottom: 16px; display: none; font-weight: 500;}
+    
+    .modal-actions { display: flex; gap: 12px; justify-content: flex-end; }
+    .modal-actions .btn { padding: 10px 20px; border-radius: 10px; font-size: 0.95rem; border: none;}
+    .btn-modal-cancel { background: #f1f5f9; color: #475569; cursor: pointer; font-weight: 600;}
+    .btn-modal-cancel:hover { background: #e2e8f0; }
   </style>
 </head>
 <body>
   <main class="wrap">
     
-    <!-- Hero Section -->
     <section class="hero">
       <div class="hero-content">
         <div class="brand">
@@ -382,15 +388,14 @@
       </div>
     </section>
 
-    <!-- 1. Essential Access Section (For All) -->
+    <!-- 1. Main Portals Section (For Everyone) -->
     <section class="section" id="links">
       <div class="section-head">
-        <h2><i class="fa-solid fa-users"></i> Main Portals (For All)</h2>
+        <h2><i class="fa-solid fa-layer-group"></i> Main Portals (For Everyone)</h2>
         <p>Essential links for students, parents, and general visitors.</p>
       </div>
 
       <div class="grid">
-        <!-- Student Portal -->
         <article class="card">
           <div class="card-top">
             <div class="card-header">
@@ -406,7 +411,6 @@
           </a>
         </article>
 
-        <!-- Main Website -->
         <article class="card">
           <div class="card-top">
             <div class="card-header">
@@ -417,7 +421,7 @@
             <p>Visit the main Englishjibi classes website for class information and official updates.</p>
           </div>
           <div class="url-box"><i class="fa-solid fa-link"></i> sk-mallick.github.io/englishjibi...</div>
-          <a class="open-link" style="background-color: #d97706;" href="https://sk-mallick.github.io/englishjibi-classes" target="_blank" rel="noopener noreferrer">
+          <a class="open-link" href="https://sk-mallick.github.io/englishjibi-classes" target="_blank" rel="noopener noreferrer">
             Open Main Website <i class="fa-solid fa-arrow-up-right-from-square"></i>
           </a>
         </article>
@@ -432,7 +436,6 @@
       </div>
 
       <div class="grid">
-        <!-- Admin Portal -->
         <article class="card">
           <div class="card-top">
             <div class="card-header">
@@ -442,13 +445,11 @@
             <h3>Admin Portal</h3>
             <p>Manage portal content, updates, and student information from the dashboard.</p>
           </div>
-          <div class="url-box"><i class="fa-solid fa-link"></i> englishjibi.wuaze.com/admin/</div>
-          <a class="open-link" style="background-color: #475569;" href="https://englishjibi.wuaze.com/admin/" target="_blank" rel="noopener noreferrer">
+          <a class="open-link" href="https://englishjibi.wuaze.com/admin/" target="_blank" rel="noopener noreferrer">
             Open Admin Portal <i class="fa-solid fa-arrow-up-right-from-square"></i>
           </a>
         </article>
 
-        <!-- Question Bank -->
         <article class="card">
           <div class="card-top">
             <div class="card-header">
@@ -458,23 +459,21 @@
             <h3>Question Bank</h3>
             <p>Access the teachers’ question bank for class-wise question sets and materials.</p>
           </div>
-          <div class="url-box"><i class="fa-solid fa-link"></i> sk-mallick.github.io/ALL-SETS/</div>
-          <a class="open-link" style="background-color: #059669;" href="https://sk-mallick.github.io/ALL-SETS/" target="_blank" rel="noopener noreferrer">
-            Open Question Bank <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          <a class="open-link" href="#" onclick="openPasswordModal(event)">
+            Open Question Bank <i class="fa-solid fa-lock"></i>
           </a>
         </article>
       </div>
     </section>
 
-    <!-- 3. Social Media Channels Section -->
+    <!-- 3. Social Media & Community Section -->
     <section class="section">
       <div class="section-head">
-        <h2><i class="fa-solid fa-hashtag"></i> Social Media & Community</h2>
-        <p>Follow us for updates, free resources, and video lessons.</p>
+        <h2><i class="fa-solid fa-tower-broadcast"></i> Social Media & Community</h2>
+        <p>Stay connected for lessons, study files, and announcements.</p>
       </div>
 
       <div class="grid">
-        <!-- Telegram -->
         <article class="card">
           <div class="card-top">
             <div class="card-header">
@@ -484,12 +483,11 @@
             <h3>English with Chiranjibi Sir</h3>
             <p>Join for weekly vocabulary tests, free question papers, grammar PDFs, and exam updates.</p>
           </div>
-          <a class="open-link" style="background-color: #0891b2;" href="https://t.me/englishwithchiranjibisir" target="_blank" rel="noopener noreferrer">
+          <a class="open-link" href="https://t.me/englishwithchiranjibisir" target="_blank" rel="noopener noreferrer">
             Join Telegram Group <i class="fa-brands fa-telegram"></i>
           </a>
         </article>
-        
-        <!-- YouTube -->
+
         <article class="card">
           <div class="card-top">
             <div class="card-header">
@@ -499,12 +497,11 @@
             <h3>ENGLISHJIBI BASIC</h3>
             <p>Watch video lessons and curated learning content for English practice.</p>
           </div>
-          <a class="open-link" style="background-color: #dc2626;" href="https://www.youtube.com/@Englishjibibasic" target="_blank" rel="noopener noreferrer">
+          <a class="open-link" href="https://www.youtube.com/@Englishjibibasic" target="_blank" rel="noopener noreferrer">
             Open YouTube <i class="fa-brands fa-youtube"></i>
           </a>
         </article>
 
-        <!-- LinkedIn -->
         <article class="card">
           <div class="card-top">
             <div class="card-header">
@@ -514,7 +511,7 @@
             <h3>Englishjibi Classes</h3>
             <p>Follow the official business profile for institutional updates and brand presence.</p>
           </div>
-          <a class="open-link" style="background-color: #0284c7;" href="https://www.linkedin.com/company/englishjibi-classes" target="_blank" rel="noopener noreferrer">
+          <a class="open-link" href="https://www.linkedin.com/company/englishjibi-classes" target="_blank" rel="noopener noreferrer">
             Open LinkedIn <i class="fa-brands fa-linkedin-in"></i>
           </a>
         </article>
@@ -522,9 +519,55 @@
     </section>
 
     <div class="footer">
-      <span><i class="fa-solid fa-heart" style="color: #cbd5e1;"></i></span>
+      <span><i class="fa-solid fa-heart" style="color: #475569;"></i></span>
       Built as a clean, shareable index page for mobile and desktop.
     </div>
   </main>
+
+  <!-- Password Modal -->
+  <div class="modal-overlay" id="passwordModal" onclick="closeModal(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <h3><i class="fa-solid fa-lock"></i> Teacher Access</h3>
+      <p>Please enter the secure password to access the Question Bank.</p>
+      <input type="password" id="qbPassword" placeholder="Enter Password" onkeypress="handleEnter(event)" />
+      <div id="modalError" class="modal-error"><i class="fa-solid fa-circle-exclamation"></i> Incorrect password. Please try again.</div>
+      <div class="modal-actions">
+        <button class="btn btn-modal-cancel" onclick="closeModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="verifyPassword()">Submit</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openPasswordModal(e) {
+      e.preventDefault();
+      document.getElementById('passwordModal').style.display = 'flex';
+      document.getElementById('qbPassword').value = '';
+      document.getElementById('modalError').style.display = 'none';
+      setTimeout(() => document.getElementById('qbPassword').focus(), 100);
+    }
+
+    function closeModal(e) {
+      // If event exists and target is not the overlay itself, ignore (prevents closing when clicking inside modal)
+      if (e && e.target.id !== 'passwordModal') return;
+      document.getElementById('passwordModal').style.display = 'none';
+    }
+
+    function verifyPassword() {
+      const pw = document.getElementById('qbPassword').value;
+      if (pw === 'EJ2024') {
+        window.open('https://sk-mallick.github.io/ALL-SETS/', '_blank');
+        closeModal();
+      } else {
+        document.getElementById('modalError').style.display = 'block';
+      }
+    }
+
+    function handleEnter(e) {
+      if (e.key === 'Enter') {
+        verifyPassword();
+      }
+    }
+  </script>
 </body>
 </html>
