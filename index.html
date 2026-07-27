@@ -31,19 +31,24 @@
       --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
       --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.15);
       --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-      --radius: 16px; /* Slightly smaller radius for dashboard */
+      --radius: 14px;
+      --cols: 4; /* how many cards sit in one row — overridden by media queries below */
     }
 
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    
+    html { scroll-behavior: smooth; height: 100%; }
+
+    /* The whole layout is sized in vh/vw + clamp() so it compresses to fit
+       one viewport instead of ever scrolling — this lives in a fixed panel. */
+
     body {
       margin: 0;
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background-color: #040914; 
+      background-color: #040914;
       color: #ffffff;
-      height: 100vh; /* Fixed panel height */
-      overflow: hidden; /* No scrolling */
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
       position: relative;
       z-index: 0;
     }
@@ -51,7 +56,7 @@
     body::before {
       content: "";
       position: fixed;
-      top: -20%; left: -20%; right: -20%; bottom: -20%; 
+      top: -20%; left: -20%; right: -20%; bottom: -20%;
       z-index: -1;
       background: linear-gradient(
         120deg,
@@ -63,7 +68,7 @@
       );
       background-size: 300% 300%;
       animation: geminiResponse 12s ease-in-out infinite alternate;
-      filter: blur(80px); 
+      filter: blur(80px);
       opacity: 0.6;
       pointer-events: none;
     }
@@ -74,65 +79,66 @@
       100% { background-position: 100% 50%; }
     }
 
-    .wrap { 
-      width: 100%; 
-      max-width: 1500px; /* Wide panel view */
-      margin: 0 auto; 
-      padding: 2vh 2vw; /* Responsive panel padding */
+    .wrap {
+      width: 100%;
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: clamp(8px, 1.6vh, 20px) clamp(10px, 1.6vw, 24px);
       height: 100vh;
       display: flex;
       flex-direction: column;
-      gap: 2vh; /* Space between hero and grid */
+      gap: clamp(6px, 1.4vh, 16px);
       opacity: 0;
       animation: contentFadeIn 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+      overflow: hidden;
     }
 
-    @keyframes contentFadeIn {
-      to { opacity: 1; }
-    }
+    @keyframes contentFadeIn { to { opacity: 1; } }
 
     a { color: inherit; text-decoration: none; }
 
+    /* ---------- Hero ---------- */
     .hero {
-      position: relative;
       background: #ffffff;
       border: 1px solid var(--border);
       color: var(--text-main);
       border-radius: var(--radius);
-      padding: 1.5vh 24px;
+      padding: clamp(8px, 1.4vh, 16px) clamp(14px, 2vw, 24px);
       box-shadow: var(--shadow-md);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-shrink: 0; /* Prevents hero from squishing */
+      flex-shrink: 0;
+      gap: 12px;
+      flex-wrap: wrap;
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
+    .brand { display: flex; align-items: center; gap: clamp(8px, 1.4vw, 16px); min-width: 0; }
 
     .brand img {
-      width: 52px;
-      height: 52px;
+      width: clamp(32px, 4.5vh, 52px);
+      height: clamp(32px, 4.5vh, 52px);
       border-radius: 12px;
       object-fit: cover;
       background: #f1f5f9;
       border: 1px solid #e2e8f0;
+      flex-shrink: 0;
     }
+
+    .brand-text { min-width: 0; }
 
     .brand-text h1 {
       margin: 0;
-      font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+      font-size: clamp(1rem, 2.2vh, 1.8rem);
       font-weight: 800;
       letter-spacing: -0.02em;
+      white-space: nowrap;
     }
 
     .brand-text p {
-      margin: 4px 0 0;
+      margin: 2px 0 0;
       color: var(--text-muted);
-      font-size: 0.9rem;
+      font-size: clamp(0.62rem, 1.2vh, 0.9rem);
       max-width: 55ch;
       white-space: nowrap;
       overflow: hidden;
@@ -143,73 +149,62 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 8px 16px;
+      padding: clamp(5px, 1vh, 8px) clamp(10px, 1.4vw, 16px);
       border-radius: 99px;
       background: #f8fafc;
       border: 1px solid #e2e8f0;
       color: #475569;
-      font-size: 0.85rem;
+      font-size: clamp(0.62rem, 1.2vh, 0.85rem);
       font-weight: 600;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
     .hero-badge i { color: #f59e0b; }
 
-    .dashboard-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      flex-grow: 1;
-      min-height: 0; /* Allows inner content to size correctly */
-    }
-
-    .section { 
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-    }
-    
-    .section-head { 
-      margin-bottom: 10px; 
-      padding-left: 4px;
-      flex-shrink: 0;
-    }
-    
-    .section-head h2 { 
-      margin: 0 0 4px; 
-      font-size: 1.1rem; 
-      font-weight: 700;
-      color: #fff;
-      display: flex;
+    .hero-actions { flex-shrink: 0; }
+    .hero-actions .btn {
+      display: inline-flex;
       align-items: center;
       gap: 8px;
+      padding: clamp(6px, 1.2vh, 10px) clamp(12px, 1.6vw, 18px);
+      border-radius: 10px;
+      background: #2563eb;
+      color: #fff;
+      font-weight: 600;
+      font-size: clamp(0.68rem, 1.2vh, 0.9rem);
+      white-space: nowrap;
+      transition: background 0.2s ease;
     }
-    
-    .section-head p { 
-      margin: 0; 
-      color: rgba(255, 255, 255, 0.7); 
-      font-size: 0.85rem; 
-    }
+    .hero-actions .btn:hover { background: #1d4ed8; }
 
-    .card-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+    /* ---------- Card grid ---------- */
+    /* Single flat grid: every card is the same size. Column count adapts to
+       panel width (4 -> 3 -> 2), and grid-auto-rows: 1fr always divides the
+       remaining height evenly across however many rows that produces, so
+       the whole thing fits one screen with no scrolling at any size. */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(var(--cols), 1fr);
+      grid-auto-rows: 1fr;
+      gap: clamp(8px, 1.5vw, 20px);
       flex-grow: 1;
-      overflow-y: auto; /* Fallback scroll */
-      padding-right: 4px;
+      min-height: 0;
     }
 
     .card {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 14px 18px;
+      padding: clamp(8px, 1.5vh, 16px) clamp(10px, 1.4vw, 18px);
       box-shadow: var(--shadow-sm);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       display: flex;
       flex-direction: column;
-      position: relative;
+      justify-content: space-between;
       color: var(--text-main);
-      flex: 1; /* Stretch to fill column height evenly */
+      min-height: 0;
+      min-width: 0;
+      overflow: hidden;
     }
 
     .card:hover {
@@ -218,61 +213,68 @@
       border-color: #cbd5e1;
     }
 
+    .card-top { min-height: 0; overflow: hidden; }
+
     .card-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 8px;
+      margin-bottom: clamp(4px, 1vh, 10px);
+      gap: 8px;
     }
 
     .card-icon {
-      width: 34px;
-      height: 34px;
+      width: clamp(26px, 3.6vh, 36px);
+      height: clamp(26px, 3.6vh, 36px);
       border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 16px;
+      font-size: clamp(13px, 1.8vh, 17px);
       color: white;
+      flex-shrink: 0;
     }
 
-    /* Vibrant icons */
     .icon-student { background: linear-gradient(135deg, #3b82f6, #2563eb); }
-    .icon-admin { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
-    .icon-bank { background: linear-gradient(135deg, #10b981, #059669); }
-    .icon-web { background: linear-gradient(135deg, #f59e0b, #d97706); }
-    .icon-yt { background: linear-gradient(135deg, #ef4444, #dc2626); }
-    .icon-li { background: linear-gradient(135deg, #0ea5e9, #0284c7); }
-    .icon-tg { background: linear-gradient(135deg, #06b6d4, #0891b2); }
+    .icon-admin   { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
+    .icon-bank    { background: linear-gradient(135deg, #10b981, #059669); }
+    .icon-web     { background: linear-gradient(135deg, #f59e0b, #d97706); }
+    .icon-yt      { background: linear-gradient(135deg, #ef4444, #dc2626); }
+    .icon-li      { background: linear-gradient(135deg, #0ea5e9, #0284c7); }
+    .icon-tg      { background: linear-gradient(135deg, #06b6d4, #0891b2); }
 
     .pill {
       display: inline-flex;
       align-items: center;
       gap: 4px;
-      padding: 4px 10px;
+      padding: clamp(2px, 0.7vh, 4px) clamp(6px, 1vw, 10px);
       border-radius: 99px;
       background: #f1f5f9;
       border: 1px solid #e2e8f0;
       color: #475569;
-      font-size: 0.75rem;
+      font-size: clamp(0.58rem, 1.05vh, 0.72rem);
       font-weight: 700;
       text-transform: uppercase;
+      white-space: nowrap;
     }
 
-    .card h3 { 
-      margin: 0 0 4px; 
-      font-size: 1.05rem; 
+    .card h3 {
+      margin: 0 0 3px;
+      font-size: clamp(0.82rem, 1.7vh, 1.1rem);
       font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
-    
-    .card p { 
-      margin: 0 0 10px; 
-      color: var(--text-muted); 
-      line-height: 1.4; 
-      font-size: 0.85rem; 
+
+    .card p {
+      margin: 0 0 clamp(4px, 1vh, 10px);
+      color: var(--text-muted);
+      line-height: 1.35;
+      font-size: clamp(0.66rem, 1.3vh, 0.86rem);
       display: -webkit-box;
-      -webkit-line-clamp: 2; /* Truncates text on small vertical spaces */
-      -webkit-box-orient: vertical;  
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
       overflow: hidden;
     }
 
@@ -281,43 +283,42 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      padding: 10px;
+      padding: clamp(6px, 1.3vh, 11px);
       border-radius: 10px;
       background: #2563eb;
       color: #fff;
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: clamp(0.7rem, 1.35vh, 0.92rem);
       transition: all 0.2s ease;
       border: none;
       width: 100%;
-      margin-top: auto; /* Push to bottom of card */
+      margin-top: auto;
+      flex-shrink: 0;
+      white-space: nowrap;
     }
-    
     .open-link:hover { background: #1d4ed8; }
 
     .footer {
       text-align: center;
       color: rgba(255, 255, 255, 0.5);
-      font-size: 0.8rem;
+      font-size: clamp(0.65rem, 1.1vh, 0.8rem);
       flex-shrink: 0;
     }
 
-    /* Scroll fallback for tablets/mobile */
-    @media (max-width: 1024px) {
-      body { overflow-y: auto; height: auto; }
-      .wrap { height: auto; overflow: visible; padding-bottom: 32px;}
-      .dashboard-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
-      .card { min-height: 160px; }
+    /* ---------- Responsive column counts ---------- */
+    /* 7 cards total: 4 cols -> rows of 4+3 | 3 cols -> 3+3+1 | 2 cols -> 2+2+2+1 */
+    @media (max-width: 1150px) { :root { --cols: 3; } }
+    @media (max-width: 760px)  { :root { --cols: 2; } }
+    @media (max-width: 420px)  { :root { --cols: 1; } }
+
+    @media (max-width: 760px) {
+      .brand-text p { display: none; } /* only the long tagline drops; icons/badges stay */
+    }
+    @media (max-width: 560px) {
+      .hero-badge span { display: none; } /* keep the star icon, drop just the label */
     }
 
-    @media (max-width: 700px) {
-      .dashboard-grid { grid-template-columns: 1fr; }
-      .hero { flex-direction: column; align-items: flex-start; gap: 12px; padding: 20px; }
-      .brand-text p { white-space: normal; }
-      .hero-badge { align-self: flex-start; }
-    }
-
-    /* Modal Styles (Kept identical) */
+    /* ---------- Modal ---------- */
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -331,7 +332,7 @@
       animation: fadeIn 0.2s forwards;
     }
     @keyframes fadeIn { to { opacity: 1; } }
-    
+
     .modal-content {
       background: #fff;
       padding: 32px;
@@ -344,19 +345,19 @@
       animation: slideUp 0.3s forwards;
     }
     @keyframes slideUp { to { transform: translateY(0); } }
-    
+
     .modal-content h3 { margin: 0 0 12px; display: flex; align-items: center; gap: 10px; font-size: 1.4rem; }
     .modal-content p { color: var(--text-muted); margin: 0 0 20px; line-height: 1.5; font-size: 0.95rem; }
-    
+
     .modal-content input {
       width: 100%; padding: 14px; border-radius: 12px;
       border: 1px solid var(--border); font-size: 1rem;
       margin-bottom: 12px; outline: none; transition: border-color 0.2s;
     }
     .modal-content input:focus { border-color: #2563eb; }
-    
+
     .modal-error { color: #dc2626; font-size: 0.9rem; margin-bottom: 16px; display: none; font-weight: 500;}
-    
+
     .modal-actions { display: flex; gap: 12px; justify-content: flex-end; }
     .modal-actions .btn { padding: 10px 20px; border-radius: 10px; font-size: 0.95rem; border: none;}
     .btn-modal-cancel { background: #f1f5f9; color: #475569; cursor: pointer; font-weight: 600;}
@@ -365,158 +366,127 @@
 </head>
 <body>
   <main class="wrap">
-    
+
     <section class="hero">
-      <div class="hero-content">
-        <div class="brand">
-          <img src="https://sk-mallick.github.io/englishjibi-classes/img/icon.webp" alt="Englishjibi logo" />
-          <div class="brand-text">
-            <h1>Englishjibi Hub</h1>
-            <p>One simple page for parents, students, and teachers to access the portal, study materials, official channels, and important updates.</p>
-          </div>
-        </div>
-        <div class="hero-badge" aria-label="Features">
-          <i class="fa-solid fa-star"></i>
-          <span>Practice • Reports • Materials • Updates</span>
+      <div class="brand">
+        <img src="https://sk-mallick.github.io/englishjibi-classes/img/icon.webp" alt="Englishjibi logo" />
+        <div class="brand-text">
+          <h1>Englishjibi Hub</h1>
+          <p>One simple page for parents, students, and teachers to access the portal, study materials, official channels, and important updates.</p>
         </div>
       </div>
-
+      <div class="hero-badge" aria-label="Features">
+        <i class="fa-solid fa-star"></i>
+        <span>Practice • Reports • Materials • Updates</span>
+      </div>
       <div class="hero-actions">
-        <a class="btn btn-primary" href="#links">
+        <a class="btn" href="#links">
           <i class="fa-solid fa-bolt"></i> Open Quick Links
         </a>
       </div>
     </section>
 
-    <!-- 1. Main Portals Section (For Everyone) -->
-    <section class="section" id="links">
-      <div class="section-head">
-        <h2><i class="fa-solid fa-layer-group"></i> Main Portals (For Everyone)</h2>
-        <p>Essential links for students, parents, and general visitors.</p>
-      </div>
+    <div class="dashboard-grid" id="links">
 
-      <div class="grid">
-        <article class="card">
-          <div class="card-top">
-            <div class="card-header">
-              <div class="card-icon icon-student"><i class="fa-solid fa-user-graduate"></i></div>
-              <div class="pill"><i class="fa-solid fa-tag"></i> For Students</div>
-            </div>
-            <h3>Student Portal</h3>
-            <p>Login to practise English grammar and CBSE PYQs anytime from your device.</p>
+      <article class="card">
+        <div class="card-top">
+          <div class="card-header">
+            <div class="card-icon icon-student"><i class="fa-solid fa-user-graduate"></i></div>
+            <div class="pill"><i class="fa-solid fa-tag"></i> Students</div>
           </div>
-          <div class="url-box"><i class="fa-solid fa-link"></i> englishjibi.wuaze.com</div>
-          <a class="open-link" href="https://englishjibi.wuaze.com/" target="_blank" rel="noopener noreferrer">
-            Open Student Portal <i class="fa-solid fa-arrow-up-right-from-square"></i>
-          </a>
-        </article>
+          <h3>Student Portal</h3>
+          <p>Login to practise English grammar and CBSE PYQs anytime.</p>
+        </div>
+        <a class="open-link" href="https://englishjibi.wuaze.com/" target="_blank" rel="noopener noreferrer">
+          Open Portal <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </a>
+      </article>
 
-        <article class="card">
-          <div class="card-top">
-            <div class="card-header">
-              <div class="card-icon icon-web"><i class="fa-solid fa-globe"></i></div>
-              <div class="pill"><i class="fa-solid fa-building"></i> Official Website</div>
-            </div>
-            <h3>Main Website</h3>
-            <p>Visit the main Englishjibi classes website for class information and official updates.</p>
+      <article class="card">
+        <div class="card-top">
+          <div class="card-header">
+            <div class="card-icon icon-web"><i class="fa-solid fa-globe"></i></div>
+            <div class="pill"><i class="fa-solid fa-building"></i> Official</div>
           </div>
-          <div class="url-box"><i class="fa-solid fa-link"></i> sk-mallick.github.io/englishjibi...</div>
-          <a class="open-link" href="https://sk-mallick.github.io/englishjibi-classes" target="_blank" rel="noopener noreferrer">
-            Open Main Website <i class="fa-solid fa-arrow-up-right-from-square"></i>
-          </a>
-        </article>
-      </div>
-    </section>
+          <h3>Main Website</h3>
+          <p>Visit the main website for class info and official updates.</p>
+        </div>
+        <a class="open-link" style="background-color: #d97706;" href="https://sk-mallick.github.io/englishjibi-classes" target="_blank" rel="noopener noreferrer">
+          Open Website <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </a>
+      </article>
 
-    <!-- 2. Administration & Staff Section -->
-    <section class="section">
-      <div class="section-head">
-        <h2><i class="fa-solid fa-shield-halved"></i> Administration & Staff</h2>
-        <p>Management portals and exclusive resources for teachers and administrators.</p>
-      </div>
-
-      <div class="grid">
-        <article class="card">
-          <div class="card-top">
-            <div class="card-header">
-              <div class="card-icon icon-admin"><i class="fa-solid fa-shield-halved"></i></div>
-              <div class="pill"><i class="fa-solid fa-lock"></i> For Admin</div>
-            </div>
-            <h3>Admin Portal</h3>
-            <p>Manage portal content, updates, and student information from the dashboard.</p>
+      <article class="card">
+        <div class="card-top">
+          <div class="card-header">
+            <div class="card-icon icon-admin"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="pill"><i class="fa-solid fa-lock"></i> Admin</div>
           </div>
-          <a class="open-link" href="https://englishjibi.wuaze.com/admin/" target="_blank" rel="noopener noreferrer">
-            Open Admin Portal <i class="fa-solid fa-arrow-up-right-from-square"></i>
-          </a>
-        </article>
+          <h3>Admin Portal</h3>
+          <p>Manage content, updates, and student information from the dashboard.</p>
+        </div>
+        <a class="open-link" style="background-color: #475569;" href="https://englishjibi.wuaze.com/admin/" target="_blank" rel="noopener noreferrer">
+          Open Portal <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </a>
+      </article>
 
-        <article class="card">
-          <div class="card-top">
-            <div class="card-header">
-              <div class="card-icon icon-bank"><i class="fa-solid fa-book-open"></i></div>
-              <div class="pill"><i class="fa-solid fa-chalkboard-user"></i> For Teachers</div>
-            </div>
-            <h3>Question Bank</h3>
-            <p>Access the teachers’ question bank for class-wise question sets and materials.</p>
+      <article class="card">
+        <div class="card-top">
+          <div class="card-header">
+            <div class="card-icon icon-bank"><i class="fa-solid fa-book-open"></i></div>
+            <div class="pill"><i class="fa-solid fa-chalkboard-user"></i> Teachers</div>
           </div>
-          <a class="open-link" href="#" onclick="openPasswordModal(event)">
-            Open Question Bank <i class="fa-solid fa-lock"></i>
-          </a>
-        </article>
-      </div>
-    </section>
+          <h3>Question Bank</h3>
+          <p>Access the teachers' question bank for class-wise sets and materials.</p>
+        </div>
+        <a class="open-link" style="background-color: #059669;" href="#" onclick="openPasswordModal(event)">
+          Open Bank <i class="fa-solid fa-lock"></i>
+        </a>
+      </article>
 
-    <!-- 3. Social Media & Community Section -->
-    <section class="section">
-      <div class="section-head">
-        <h2><i class="fa-solid fa-tower-broadcast"></i> Social Media & Community</h2>
-        <p>Stay connected for lessons, study files, and announcements.</p>
-      </div>
-
-      <div class="grid">
-        <article class="card">
-          <div class="card-top">
-            <div class="card-header">
-              <div class="card-icon icon-tg"><i class="fa-brands fa-telegram"></i></div>
-              <div class="pill"><i class="fa-solid fa-bell"></i> Best for Updates</div>
-            </div>
-            <h3>English with Chiranjibi Sir</h3>
-            <p>Join for weekly vocabulary tests, free question papers, grammar PDFs, and exam updates.</p>
+      <article class="card">
+        <div class="card-top">
+          <div class="card-header">
+            <div class="card-icon icon-tg"><i class="fa-brands fa-telegram"></i></div>
+            <div class="pill"><i class="fa-solid fa-bell"></i> Updates</div>
           </div>
-          <a class="open-link" href="https://t.me/englishwithchiranjibisir" target="_blank" rel="noopener noreferrer">
-            Join Telegram Group <i class="fa-brands fa-telegram"></i>
-          </a>
-        </article>
+          <h3>Chiranjibi Sir</h3>
+          <p>Join for vocabulary tests and exam updates.</p>
+        </div>
+        <a class="open-link" style="background-color: #0891b2;" href="https://t.me/englishwithchiranjibisir" target="_blank" rel="noopener noreferrer">
+          Join Telegram <i class="fa-brands fa-telegram"></i>
+        </a>
+      </article>
 
-        <article class="card">
-          <div class="card-top">
-            <div class="card-header">
-              <div class="card-icon icon-yt"><i class="fa-brands fa-youtube"></i></div>
-              <div class="pill"><i class="fa-solid fa-video"></i> Video Channel</div>
-            </div>
-            <h3>ENGLISHJIBI BASIC</h3>
-            <p>Watch video lessons and curated learning content for English practice.</p>
+      <article class="card">
+        <div class="card-top">
+          <div class="card-header">
+            <div class="card-icon icon-yt"><i class="fa-brands fa-youtube"></i></div>
+            <div class="pill"><i class="fa-solid fa-video"></i> Video</div>
           </div>
-          <a class="open-link" href="https://www.youtube.com/@Englishjibibasic" target="_blank" rel="noopener noreferrer">
-            Open YouTube <i class="fa-brands fa-youtube"></i>
-          </a>
-        </article>
+          <h3>Englishjibi Basic</h3>
+          <p>Watch video lessons for English practice.</p>
+        </div>
+        <a class="open-link" style="background-color: #dc2626;" href="https://www.youtube.com/@Englishjibibasic" target="_blank" rel="noopener noreferrer">
+          Open YouTube <i class="fa-brands fa-youtube"></i>
+        </a>
+      </article>
 
-        <article class="card">
-          <div class="card-top">
-            <div class="card-header">
-              <div class="card-icon icon-li"><i class="fa-brands fa-linkedin-in"></i></div>
-              <div class="pill"><i class="fa-solid fa-briefcase"></i> Business Profile</div>
-            </div>
-            <h3>Englishjibi Classes</h3>
-            <p>Follow the official business profile for institutional updates and brand presence.</p>
+      <article class="card">
+        <div class="card-top">
+          <div class="card-header">
+            <div class="card-icon icon-li"><i class="fa-brands fa-linkedin-in"></i></div>
+            <div class="pill"><i class="fa-solid fa-briefcase"></i> Business</div>
           </div>
-          <a class="open-link" href="https://www.linkedin.com/company/englishjibi-classes" target="_blank" rel="noopener noreferrer">
-            Open LinkedIn <i class="fa-brands fa-linkedin-in"></i>
-          </a>
-        </article>
-      </div>
-    </section>
+          <h3>Englishjibi Classes</h3>
+          <p>Follow the official business profile.</p>
+        </div>
+        <a class="open-link" style="background-color: #0284c7;" href="https://www.linkedin.com/company/englishjibi-classes" target="_blank" rel="noopener noreferrer">
+          Open LinkedIn <i class="fa-brands fa-linkedin-in"></i>
+        </a>
+      </article>
+
+    </div>
 
     <div class="footer">
       <span><i class="fa-solid fa-heart" style="color: #475569;"></i></span>
@@ -548,7 +518,6 @@
     }
 
     function closeModal(e) {
-      // If event exists and target is not the overlay itself, ignore (prevents closing when clicking inside modal)
       if (e && e.target.id !== 'passwordModal') return;
       document.getElementById('passwordModal').style.display = 'none';
     }
