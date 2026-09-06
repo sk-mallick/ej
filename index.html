@@ -1,542 +1,2769 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark" data-palette="sapphire">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Englishjibi student and parent hub with portals, class links, study resources, and official channels." />
-  <meta name="theme-color" content="#040914" />
-  <title>Englishjibi | Student & Parent Hub</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="Englishjibi Hub - The centralized access portal for students, parents, and teachers for classes, materials, portals, and official channels." />
+    <meta name="theme-color" content="#030712" />
+    <title>Englishjibi Hub | Student, Parent & Teacher Portal</title>
 
-  <!-- Open Graph -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Englishjibi | Student & Parent Hub" />
-  <meta property="og:description" content="Access the student portal, admin portal, question bank, main website, YouTube, LinkedIn, and Telegram group." />
-  <meta property="og:image" content="https://sk-mallick.github.io/englishjibi-classes/img/icon.webp" />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Englishjibi Hub | Student, Parent & Teacher Portal" />
+    <meta property="og:description"
+        content="Instant access to Student Portal, Admin Portal, Question Bank, Study Sets, Official Website, YouTube, and Telegram." />
+    <meta property="og:image" content="https://sk-mallick.github.io/englishjibi-classes/img/icon.webp" />
 
-  <!-- Favicons -->
-  <link rel="icon" type="image/webp" sizes="32x32" href="https://sk-mallick.github.io/englishjibi-classes/img/icon.webp" />
-  <link rel="apple-touch-icon" sizes="180x180" href="https://sk-mallick.github.io/englishjibi-classes/img/icon.webp" />
+    <!-- Favicons -->
+    <link rel="icon" type="image/webp" sizes="32x32"
+        href="https://sk-mallick.github.io/englishjibi-classes/img/icon.webp" />
+    <link rel="apple-touch-icon" sizes="180x180"
+        href="https://sk-mallick.github.io/englishjibi-classes/img/icon.webp" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Outfit, Plus Jakarta Sans, JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-  <style>
-    :root {
-      --card-bg: #ffffff;
-      --text-main: #0f172a;
-      --text-muted: #64748b;
-      --border: #e2e8f0;
-      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-      --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.15);
-      --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-      --radius: 14px;
-      --cols: 4; /* how many cards sit in one row — overridden by media queries below */
-    }
+    <style>
+        :root {
+            /* Base Theme Tokens - Spec 2.2 */
+            --bg-base: #030712;
+            --bg-surface: rgba(17, 24, 39, 0.72);
+            --bg-card: rgba(17, 24, 39, 0.75);
+            --bg-card-hover: rgba(30, 41, 59, 0.88);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --card-border-hover: rgba(99, 102, 241, 0.40);
+            --text-primary: #F8FAFC;
+            --text-secondary: #94A3B8;
+            --text-muted: #64748B;
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; height: 100%; }
+            /* Default Palette: Royal Sapphire */
+            --accent-primary: #3B82F6;
+            --accent-primary-hover: #2563EB;
+            --accent-glow: rgba(59, 130, 246, 0.35);
+            --orb-1-color: #2563EB;
+            --orb-2-color: #0D9488;
+            --orb-3-color: #8B5CF6;
 
-    /* The whole layout is sized in vh/vw + clamp() so it compresses to fit
-       one viewport instead of ever scrolling — this lives in a fixed panel. */
+            --pill-bg: rgba(255, 255, 255, 0.06);
+            --pill-border: rgba(255, 255, 255, 0.12);
+            --pill-text: #CBD5E1;
+            --input-bg: rgba(15, 23, 42, 0.8);
+            --input-border: rgba(255, 255, 255, 0.12);
+            --modal-overlay: rgba(3, 7, 18, 0.85);
+            --modal-bg: #0F172A;
+            --ticker-bg: rgba(15, 23, 42, 0.65);
+            --shadow-subtle: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+            --shadow-card: 0 12px 32px -8px rgba(0, 0, 0, 0.45);
+            --shadow-glow: 0 0 25px var(--accent-glow);
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --radius-full: 9999px;
+            --blur-val: blur(16px);
+        }
 
-    body {
-      margin: 0;
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background-color: #040914;
-      color: #ffffff;
-      height: 100vh;
-      width: 100vw;
-      overflow: hidden;
-      position: relative;
-      z-index: 0;
-    }
+        /* ☀️ Clean Slate Light Mode */
+        [data-theme="light"] {
+            --bg-base: #F1F5F9;
+            --bg-surface: rgba(255, 255, 255, 0.85);
+            --bg-card: rgba(255, 255, 255, 0.92);
+            --bg-card-hover: #FFFFFF;
+            --card-border: rgba(226, 232, 240, 0.90);
+            --text-primary: #0F172A;
+            --text-secondary: #475569;
+            --text-muted: #64748B;
+            --pill-bg: #E2E8F0;
+            --pill-border: #CBD5E1;
+            --pill-text: #334155;
+            --input-bg: #FFFFFF;
+            --input-border: #CBD5E1;
+            --modal-overlay: rgba(15, 23, 42, 0.65);
+            --modal-bg: #FFFFFF;
+            --ticker-bg: rgba(255, 255, 255, 0.75);
+            --shadow-subtle: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+            --shadow-card: 0 10px 30px -6px rgba(15, 23, 42, 0.08);
+            --shadow-glow: 0 0 20px var(--accent-glow);
+        }
 
-    body::before {
-      content: "";
-      position: fixed;
-      top: -20%; left: -20%; right: -20%; bottom: -20%;
-      z-index: -1;
-      background: linear-gradient(
-        120deg,
-        #040914 0%,
-        #1e3a8a 25%,
-        #0d9488 50%,
-        #b45309 75%,
-        #040914 100%
-      );
-      background-size: 300% 300%;
-      animation: geminiResponse 12s ease-in-out infinite alternate;
-      filter: blur(80px);
-      opacity: 0.6;
-      pointer-events: none;
-    }
+        /* ================== COLOR PALETTE VARIANTS ================== */
+        /* 1. Royal Sapphire */
+        [data-palette="sapphire"] {
+            --accent-primary: #3B82F6;
+            --accent-primary-hover: #2563EB;
+            --accent-glow: rgba(59, 130, 246, 0.35);
+            --card-border-hover: rgba(59, 130, 246, 0.45);
+            --orb-1-color: #2563EB;
+            --orb-2-color: #0D9488;
+            --orb-3-color: #8B5CF6;
+        }
 
-    @keyframes geminiResponse {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 50% 50%; }
-      100% { background-position: 100% 50%; }
-    }
+        /* 2. Emerald Forest */
+        [data-palette="emerald"] {
+            --accent-primary: #10B981;
+            --accent-primary-hover: #059669;
+            --accent-glow: rgba(16, 185, 129, 0.35);
+            --card-border-hover: rgba(16, 185, 129, 0.45);
+            --orb-1-color: #059669;
+            --orb-2-color: #047857;
+            --orb-3-color: #065F46;
+        }
 
-    .wrap {
-      width: 100%;
-      max-width: 1600px;
-      margin: 0 auto;
-      padding: clamp(8px, 1.6vh, 20px) clamp(10px, 1.6vw, 24px);
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      gap: clamp(6px, 1.4vh, 16px);
-      opacity: 0;
-      animation: contentFadeIn 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-      overflow: hidden;
-    }
+        /* 3. Cyber Violet */
+        [data-palette="violet"] {
+            --accent-primary: #8B5CF6;
+            --accent-primary-hover: #7C3AED;
+            --accent-glow: rgba(139, 92, 246, 0.35);
+            --card-border-hover: rgba(139, 92, 246, 0.45);
+            --orb-1-color: #7C3AED;
+            --orb-2-color: #6D28D9;
+            --orb-3-color: #4C1D95;
+        }
 
-    @keyframes contentFadeIn { to { opacity: 1; } }
+        /* 4. Sunset Amber */
+        [data-palette="amber"] {
+            --accent-primary: #F59E0B;
+            --accent-primary-hover: #D97706;
+            --accent-glow: rgba(245, 158, 11, 0.35);
+            --card-border-hover: rgba(245, 158, 11, 0.45);
+            --orb-1-color: #D97706;
+            --orb-2-color: #B45309;
+            --orb-3-color: #78350F;
+        }
 
-    a { color: inherit; text-decoration: none; }
+        /* 5. Rose Crimson */
+        [data-palette="rose"] {
+            --accent-primary: #F43F5E;
+            --accent-primary-hover: #E11D48;
+            --accent-glow: rgba(244, 63, 94, 0.35);
+            --card-border-hover: rgba(244, 63, 94, 0.45);
+            --orb-1-color: #E11D48;
+            --orb-2-color: #BE123C;
+            --orb-3-color: #881337;
+        }
 
-    /* ---------- Hero ---------- */
-    .hero {
-      background: #ffffff;
-      border: 1px solid var(--border);
-      color: var(--text-main);
-      border-radius: var(--radius);
-      padding: clamp(8px, 1.4vh, 16px) clamp(14px, 2vw, 24px);
-      box-shadow: var(--shadow-md);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-shrink: 0;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
+        /* 6. Electric Teal */
+        [data-palette="cyan"] {
+            --accent-primary: #06B6D4;
+            --accent-primary-hover: #0891B2;
+            --accent-glow: rgba(6, 182, 212, 0.35);
+            --card-border-hover: rgba(6, 182, 212, 0.45);
+            --orb-1-color: #0891B2;
+            --orb-2-color: #0E7490;
+            --orb-3-color: #155E75;
+        }
 
-    .brand { display: flex; align-items: center; gap: clamp(8px, 1.4vw, 16px); min-width: 0; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
 
-    .brand img {
-      width: clamp(32px, 4.5vh, 52px);
-      height: clamp(32px, 4.5vh, 52px);
-      border-radius: 12px;
-      object-fit: cover;
-      background: #f1f5f9;
-      border: 1px solid #e2e8f0;
-      flex-shrink: 0;
-    }
+        html {
+            scroll-behavior: smooth;
+            height: 100%;
+        }
 
-    .brand-text { min-width: 0; }
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            min-height: 100vh;
+            width: 100%;
+            position: relative;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
 
-    .brand-text h1 {
-      margin: 0;
-      font-size: clamp(1rem, 2.2vh, 1.8rem);
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      white-space: nowrap;
-    }
+        /* Ambient Dynamic Chromatic Backdrop */
+        .ambient-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
 
-    .brand-text p {
-      margin: 2px 0 0;
-      color: var(--text-muted);
-      font-size: clamp(0.62rem, 1.2vh, 0.9rem);
-      max-width: 55ch;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+        .glow-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(110px);
+            opacity: 0.42;
+            animation: floatGlow 18s ease-in-out infinite alternate;
+            transition: background 0.5s ease;
+        }
 
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: clamp(5px, 1vh, 8px) clamp(10px, 1.4vw, 16px);
-      border-radius: 99px;
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      color: #475569;
-      font-size: clamp(0.62rem, 1.2vh, 0.85rem);
-      font-weight: 600;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-    .hero-badge i { color: #f59e0b; }
+        [data-theme="light"] .glow-orb {
+            opacity: 0.22;
+            filter: blur(130px);
+        }
 
-    .hero-actions { flex-shrink: 0; }
-    .hero-actions .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: clamp(6px, 1.2vh, 10px) clamp(12px, 1.6vw, 18px);
-      border-radius: 10px;
-      background: #2563eb;
-      color: #fff;
-      font-weight: 600;
-      font-size: clamp(0.68rem, 1.2vh, 0.9rem);
-      white-space: nowrap;
-      transition: background 0.2s ease;
-    }
-    .hero-actions .btn:hover { background: #1d4ed8; }
+        .orb-1 {
+            width: 520px;
+            height: 520px;
+            top: -120px;
+            left: -120px;
+            background: radial-gradient(circle, var(--orb-1-color, #2563EB) 0%, #1E1B4B 70%);
+            animation-duration: 20s;
+        }
 
-    /* ---------- Card grid ---------- */
-    /* Single flat grid: every card is the same size. Column count adapts to
-       panel width (4 -> 3 -> 2), and grid-auto-rows: 1fr always divides the
-       remaining height evenly across however many rows that produces, so
-       the whole thing fits one screen with no scrolling at any size. */
-    .dashboard-grid {
-      display: grid;
-      grid-template-columns: repeat(var(--cols), 1fr);
-      grid-auto-rows: 1fr;
-      gap: clamp(8px, 1.5vw, 20px);
-      flex-grow: 1;
-      min-height: 0;
-    }
+        .orb-2 {
+            width: 460px;
+            height: 460px;
+            bottom: -90px;
+            right: -90px;
+            background: radial-gradient(circle, var(--orb-2-color, #0D9488) 0%, #064E3B 70%);
+            animation-duration: 24s;
+            animation-delay: -6s;
+        }
 
-    .card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: clamp(8px, 1.5vh, 16px) clamp(10px, 1.4vw, 18px);
-      box-shadow: var(--shadow-sm);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      color: var(--text-main);
-      min-height: 0;
-      min-width: 0;
-      overflow: hidden;
-    }
+        .orb-3 {
+            width: 360px;
+            height: 360px;
+            top: 38%;
+            left: 52%;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, var(--orb-3-color, #8B5CF6) 0%, #4C1D95 70%);
+            animation-duration: 17s;
+            animation-delay: -11s;
+        }
 
-    .card:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
-      border-color: #cbd5e1;
-    }
+        @keyframes floatGlow {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(45px, 35px) scale(1.08); }
+            100% { transform: translate(-35px, -25px) scale(0.95); }
+        }
 
-    .card-top { min-height: 0; overflow: hidden; }
+        /* Master Container Specification - Fluid Full-Width Responsive Layout */
+        .app-wrapper {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 1920px;
+            margin: 0 auto;
+            padding: clamp(10px, 1.8vh, 22px) clamp(14px, 2vw, 36px);
+            display: flex;
+            flex-direction: column;
+            gap: clamp(10px, 1.4vh, 18px);
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
 
-    .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: clamp(4px, 1vh, 10px);
-      gap: 8px;
-    }
+        /* In Fullscreen Mode, utilize full width edge-to-edge with no wasted side margins */
+        :fullscreen .app-wrapper,
+        :-webkit-full-screen .app-wrapper,
+        :-moz-full-screen .app-wrapper,
+        :-ms-fullscreen .app-wrapper {
+            max-width: 100%;
+            padding: clamp(12px, 2vh, 24px) clamp(16px, 2.5vw, 48px);
+        }
 
-    .card-icon {
-      width: clamp(26px, 3.6vh, 36px);
-      height: clamp(26px, 3.6vh, 36px);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: clamp(13px, 1.8vh, 17px);
-      color: white;
-      flex-shrink: 0;
-    }
+        /* 4.2 Live Announcement Marquee */
+        .notice-ticker {
+            background: var(--ticker-bg);
+            backdrop-filter: var(--blur-val);
+            -webkit-backdrop-filter: var(--blur-val);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-full);
+            padding: 6px 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: clamp(0.72rem, 1.2vh, 0.84rem);
+            color: var(--text-secondary);
+            overflow: hidden;
+            box-shadow: var(--shadow-subtle);
+        }
 
-    .icon-student { background: linear-gradient(135deg, #3b82f6, #2563eb); }
-    .icon-admin   { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
-    .icon-bank    { background: linear-gradient(135deg, #10b981, #059669); }
-    .icon-web     { background: linear-gradient(135deg, #f59e0b, #d97706); }
-    .icon-yt      { background: linear-gradient(135deg, #ef4444, #dc2626); }
-    .icon-li      { background: linear-gradient(135deg, #0ea5e9, #0284c7); }
-    .icon-tg      { background: linear-gradient(135deg, #06b6d4, #0891b2); }
+        .ticker-badge {
+            background: linear-gradient(135deg, #EF4444, #F97316);
+            color: white;
+            font-weight: 700;
+            font-size: 0.68rem;
+            padding: 3px 10px;
+            border-radius: var(--radius-full);
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(239, 68, 68, 0.35);
+        }
 
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: clamp(2px, 0.7vh, 4px) clamp(6px, 1vw, 10px);
-      border-radius: 99px;
-      background: #f1f5f9;
-      border: 1px solid #e2e8f0;
-      color: #475569;
-      font-size: clamp(0.58rem, 1.05vh, 0.72rem);
-      font-weight: 700;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
+        .ticker-badge i {
+            font-size: 0.65rem;
+            animation: pulseIcon 1.5s infinite;
+        }
 
-    .card h3 {
-      margin: 0 0 3px;
-      font-size: clamp(0.82rem, 1.7vh, 1.1rem);
-      font-weight: 700;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+        @keyframes pulseIcon {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.85; }
+        }
 
-    .card p {
-      margin: 0 0 clamp(4px, 1vh, 10px);
-      color: var(--text-muted);
-      line-height: 1.35;
-      font-size: clamp(0.66rem, 1.3vh, 0.86rem);
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
+        .ticker-marquee {
+            white-space: nowrap;
+            overflow: hidden;
+            flex-grow: 1;
+            position: relative;
+        }
 
-    .open-link {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: clamp(6px, 1.3vh, 11px);
-      border-radius: 10px;
-      background: #2563eb;
-      color: #fff;
-      font-weight: 600;
-      font-size: clamp(0.7rem, 1.35vh, 0.92rem);
-      transition: all 0.2s ease;
-      border: none;
-      width: 100%;
-      margin-top: auto;
-      flex-shrink: 0;
-      white-space: nowrap;
-    }
-    .open-link:hover { background: #1d4ed8; }
+        .ticker-content {
+            display: inline-block;
+            animation: marquee 34s linear infinite;
+        }
 
-    .footer {
-      text-align: center;
-      color: rgba(255, 255, 255, 0.5);
-      font-size: clamp(0.65rem, 1.1vh, 0.8rem);
-      flex-shrink: 0;
-    }
+        .ticker-content:hover {
+            animation-play-state: paused;
+        }
 
-    /* ---------- Responsive column counts ---------- */
-    /* 7 cards total: 4 cols -> rows of 4+3 | 3 cols -> 3+3+1 | 2 cols -> 2+2+2+1 */
-    @media (max-width: 1150px) { :root { --cols: 3; } }
-    @media (max-width: 760px)  { :root { --cols: 2; } }
-    @media (max-width: 420px)  { :root { --cols: 1; } }
+        .ticker-item {
+            margin-right: 36px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
 
-    @media (max-width: 760px) {
-      .brand-text p { display: none; } /* only the long tagline drops; icons/badges stay */
-    }
-    @media (max-width: 560px) {
-      .hero-badge span { display: none; } /* keep the star icon, drop just the label */
-    }
+        .ticker-item strong {
+            color: var(--text-primary);
+        }
 
-    /* ---------- Modal ---------- */
-    .modal-overlay {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(4, 9, 20, 0.8);
-      backdrop-filter: blur(5px);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-      opacity: 0;
-      animation: fadeIn 0.2s forwards;
-    }
-    @keyframes fadeIn { to { opacity: 1; } }
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
 
-    .modal-content {
-      background: #fff;
-      padding: 32px;
-      border-radius: 20px;
-      width: 90%;
-      max-width: 400px;
-      color: var(--text-main);
-      box-shadow: var(--shadow-lg);
-      transform: translateY(20px);
-      animation: slideUp 0.3s forwards;
-    }
-    @keyframes slideUp { to { transform: translateY(0); } }
+        /* 4.1 Master Header & Utility Ribbon */
+        .header {
+            background: var(--bg-surface);
+            backdrop-filter: var(--blur-val);
+            -webkit-backdrop-filter: var(--blur-val);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-lg);
+            padding: clamp(12px, 1.8vh, 18px) clamp(16px, 2vw, 24px);
+            box-shadow: var(--shadow-card);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+            transition: all 0.3s ease;
+        }
 
-    .modal-content h3 { margin: 0 0 12px; display: flex; align-items: center; gap: 10px; font-size: 1.4rem; }
-    .modal-content p { color: var(--text-muted); margin: 0 0 20px; line-height: 1.5; font-size: 0.95rem; }
+        .brand-wrapper {
+            display: flex;
+            align-items: center;
+            gap: clamp(10px, 1.5vw, 16px);
+            min-width: 250px;
+        }
 
-    .modal-content input {
-      width: 100%; padding: 14px; border-radius: 12px;
-      border: 1px solid var(--border); font-size: 1rem;
-      margin-bottom: 12px; outline: none; transition: border-color 0.2s;
-    }
-    .modal-content input:focus { border-color: #2563eb; }
+        .brand-logo-container {
+            position: relative;
+            flex-shrink: 0;
+        }
 
-    .modal-error { color: #dc2626; font-size: 0.9rem; margin-bottom: 16px; display: none; font-weight: 500;}
+        .brand-logo {
+            width: clamp(40px, 5.2vh, 52px);
+            height: clamp(40px, 5.2vh, 52px);
+            border-radius: 14px;
+            object-fit: cover;
+            background: var(--bg-card);
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+            transition: transform 0.3s ease;
+        }
 
-    .modal-actions { display: flex; gap: 12px; justify-content: flex-end; }
-    .modal-actions .btn { padding: 10px 20px; border-radius: 10px; font-size: 0.95rem; border: none;}
-    .btn-modal-cancel { background: #f1f5f9; color: #475569; cursor: pointer; font-weight: 600;}
-    .btn-modal-cancel:hover { background: #e2e8f0; }
-  </style>
+        .brand-logo:hover {
+            transform: rotate(-4deg) scale(1.05);
+        }
+
+        .brand-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-title-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-title {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: clamp(1.2rem, 2.2vh, 1.6rem);
+            letter-spacing: -0.5px;
+            color: var(--text-primary);
+            line-height: 1.15;
+        }
+
+        .brand-title span {
+            background: linear-gradient(135deg, var(--accent-primary), #818CF8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: background 0.3s ease;
+        }
+
+        /* Active Session Pulsing Dot Pill */
+        .session-status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(16, 185, 129, 0.14);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #10B981;
+            padding: 3px 8px;
+            border-radius: var(--radius-full);
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+        }
+
+        .pulse-dot {
+            width: 7px;
+            height: 7px;
+            background-color: #10B981;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #10B981;
+            animation: pulseDot 2s infinite ease-in-out;
+        }
+
+        @keyframes pulseDot {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.35); opacity: 0.7; box-shadow: 0 0 12px #10B981; }
+        }
+
+        .brand-subtitle {
+            font-size: clamp(0.72rem, 1.25vh, 0.86rem);
+            color: var(--text-secondary);
+            margin-top: 3px;
+        }
+
+        /* Instant Search Field */
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-left: auto;
+        }
+
+        .search-box {
+            position: relative;
+            min-width: 220px;
+            max-width: 320px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 8px 50px 8px 34px;
+            border-radius: var(--radius-full);
+            background: var(--input-bg);
+            border: 1px solid var(--input-border);
+            color: var(--text-primary);
+            font-size: clamp(0.75rem, 1.25vh, 0.85rem);
+            font-family: inherit;
+            outline: none;
+            transition: all 0.25s ease;
+        }
+
+        .search-input:focus {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+            background: var(--bg-card-hover);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            pointer-events: none;
+        }
+
+        .search-shortcut {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.65rem;
+            background: var(--pill-bg);
+            border: 1px solid var(--pill-border);
+            color: var(--text-muted);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+            pointer-events: none;
+        }
+
+        /* Quick Action Toolbar */
+        .btn-tool {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            padding: 8px 14px;
+            border-radius: var(--radius-full);
+            background: var(--bg-card);
+            border: 1px solid var(--card-border);
+            color: var(--text-primary);
+            font-size: clamp(0.72rem, 1.2vh, 0.84rem);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .btn-tool:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--card-border-hover);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .btn-tool i {
+            font-size: 0.85rem;
+        }
+
+        .btn-theme-toggle {
+            width: 38px;
+            height: 38px;
+            padding: 0;
+            border-radius: 50%;
+        }
+
+        .timer-active-badge {
+            display: none;
+            background: var(--accent-primary);
+            color: white;
+            font-size: 0.68rem;
+            font-weight: 700;
+            padding: 1px 5px;
+            border-radius: 6px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* 4.3 Category Filter Pills */
+        .filter-nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 2px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .filter-nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        .filter-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 15px;
+            border-radius: var(--radius-full);
+            background: var(--bg-surface);
+            border: 1px solid var(--card-border);
+            color: var(--text-secondary);
+            font-size: clamp(0.72rem, 1.2vh, 0.82rem);
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.18s ease-out;
+            backdrop-filter: var(--blur-val);
+        }
+
+        .filter-chip:hover {
+            color: var(--text-primary);
+            border-color: var(--card-border-hover);
+            background: var(--bg-card-hover);
+            transform: translateY(-1px);
+        }
+
+        .filter-chip.active {
+            background: var(--accent-primary);
+            color: #FFFFFF;
+            border-color: transparent;
+            box-shadow: 0 4px 14px var(--accent-glow);
+            transform: scale(1.02);
+        }
+
+        .filter-chip .chip-count {
+            font-size: 0.68rem;
+            padding: 2px 7px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.25);
+            color: inherit;
+            font-weight: 700;
+        }
+
+        .filter-chip:not(.active) .chip-count {
+            background: var(--pill-bg);
+            color: var(--text-muted);
+        }
+
+        /* 3.1 & 4.4 Resource Cards Grid - Adaptive High-Density Dynamic Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: clamp(10px, 1.4vw, 18px);
+            flex-grow: 1;
+            align-content: start;
+        }
+
+        @media (max-width: 540px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Card Component */
+        .hub-card {
+            background: var(--bg-card);
+            backdrop-filter: var(--blur-val);
+            -webkit-backdrop-filter: var(--blur-val);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-md);
+            padding: clamp(14px, 1.8vh, 18px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 12px;
+            box-shadow: var(--shadow-card);
+            position: relative;
+            overflow: hidden;
+            transition: transform 220ms cubic-bezier(0.4, 0, 0.2, 1), 
+                        border-color 220ms ease, 
+                        box-shadow 220ms ease;
+        }
+
+        .hub-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--card-border-hover);
+            box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.45), var(--shadow-glow);
+            background: var(--bg-card-hover);
+        }
+
+        .hub-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--card-accent, var(--accent-primary));
+            opacity: 0.85;
+            transition: opacity 0.2s ease, height 0.2s ease;
+        }
+
+        .hub-card:hover::after {
+            height: 4px;
+            opacity: 1;
+        }
+
+        .card-top {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .card-meta-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .card-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFFFFF;
+            font-size: 18px;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+            flex-shrink: 0;
+        }
+
+        .pill-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 3px 9px;
+            border-radius: var(--radius-full);
+            background: var(--pill-bg);
+            border: 1px solid var(--pill-border);
+            color: var(--pill-text);
+            font-size: clamp(0.62rem, 1.1vh, 0.74rem);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+
+        .card-title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            font-size: clamp(0.95rem, 1.6vh, 1.12rem);
+            color: var(--text-primary);
+            line-height: 1.3;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .card-desc {
+            color: var(--text-secondary);
+            font-size: clamp(0.78rem, 1.3vh, 0.88rem);
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: auto;
+            padding-top: 4px;
+        }
+
+        .btn-launch {
+            flex-grow: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: clamp(8px, 1.35vh, 11px) 14px;
+            border-radius: 10px;
+            background: var(--card-accent, var(--accent-primary));
+            color: #FFFFFF;
+            font-weight: 600;
+            font-size: clamp(0.75rem, 1.35vh, 0.9rem);
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-launch:hover {
+            filter: brightness(1.12);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+        }
+
+        .btn-launch .btn-arrow {
+            transition: transform 0.2s ease;
+            font-size: 0.8rem;
+        }
+
+        .btn-launch:hover .btn-arrow {
+            transform: translateX(4px);
+        }
+
+        .btn-copy-url {
+            width: clamp(34px, 4vh, 38px);
+            height: clamp(34px, 4vh, 38px);
+            border-radius: 10px;
+            background: var(--pill-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-secondary);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .btn-copy-url:hover {
+            background: var(--bg-card-hover);
+            color: var(--text-primary);
+            border-color: var(--card-border-hover);
+            transform: translateY(-1px);
+        }
+
+        /* Specific Gradients */
+        .color-student { --card-accent: #3B82F6; background: linear-gradient(135deg, #3B82F6, #1D4ED8); }
+        .color-website { --card-accent: #F59E0B; background: linear-gradient(135deg, #F59E0B, #B45309); }
+        .color-admin   { --card-accent: #8B5CF6; background: linear-gradient(135deg, #8B5CF6, #6D28D9); }
+        .color-bank    { --card-accent: #D97706; background: linear-gradient(135deg, #F59E0B, #D97706); }
+        .color-telegram{ --card-accent: #0284C7; background: linear-gradient(135deg, #0EA5E9, #0369A1); }
+        .color-youtube { --card-accent: #DC2626; background: linear-gradient(135deg, #EF4444, #B91C1C); }
+        .color-linkedin{ --card-accent: #0077B5; background: linear-gradient(135deg, #0284C7, #0369A1); }
+        .color-idgen   { --card-accent: #10B981; background: linear-gradient(135deg, #10B981, #047857); }
+        .color-grammar { --card-accent: #EC4899; background: linear-gradient(135deg, #F43F5E, #BE185D); }
+        .color-instagram { --card-accent: #E1306C; background: linear-gradient(135deg, #833AB4, #FD1D1D, #FCB045); }
+
+        /* Empty Search State */
+        .empty-state {
+            grid-column: 1 / -1;
+            padding: 40px 20px;
+            text-align: center;
+            color: var(--text-secondary);
+            display: none;
+        }
+
+        .empty-state i {
+            font-size: 2.5rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        /* Footer & Author Attribution */
+        .app-footer {
+            margin-top: auto;
+            padding-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: clamp(0.68rem, 1.15vh, 0.8rem);
+            color: var(--text-muted);
+            flex-wrap: wrap;
+            gap: 8px;
+            border-top: 1px solid var(--card-border);
+            padding-bottom: 6px;
+        }
+
+        .footer-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-secondary);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 14px;
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+            cursor: pointer;
+        }
+
+        .footer-link:hover {
+            color: var(--accent-primary);
+        }
+
+        /* 4.5 Interactive Modals Engine */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--modal-overlay);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 250ms ease-out;
+            padding: 16px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-dialog {
+            background: var(--modal-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-lg);
+            width: 100%;
+            max-width: 460px;
+            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.65);
+            color: var(--text-primary);
+            overflow: hidden;
+            transform: scale(0.95);
+            transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .modal-overlay.active .modal-dialog {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            padding: 18px 24px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .modal-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .modal-close {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 6px;
+            transition: color 0.2s;
+        }
+
+        .modal-close:hover {
+            color: var(--text-primary);
+        }
+
+        .modal-body {
+            padding: 20px 24px;
+        }
+
+        .modal-footer {
+            padding: 14px 24px 18px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            border-top: 1px solid var(--card-border);
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.84rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text-secondary);
+        }
+
+        .input-password-wrapper {
+            position: relative;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 42px 12px 14px;
+            border-radius: 10px;
+            background: var(--input-bg);
+            border: 1px solid var(--input-border);
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        .btn-toggle-pw {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .modal-error {
+            display: none;
+            align-items: center;
+            gap: 6px;
+            color: #EF4444;
+            font-size: 0.82rem;
+            font-weight: 600;
+            margin-top: 8px;
+            animation: shake 350ms ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20% { transform: translateX(-8px); }
+            40% { transform: translateX(8px); }
+            60% { transform: translateX(-4px); }
+            80% { transform: translateX(4px); }
+        }
+
+        .btn-modal-cancel {
+            padding: 9px 16px;
+            border-radius: 8px;
+            background: var(--pill-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.86rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-modal-cancel:hover {
+            background: var(--bg-card-hover);
+            color: var(--text-primary);
+        }
+
+        .btn-modal-submit {
+            padding: 9px 18px;
+            border-radius: 8px;
+            background: var(--accent-primary);
+            border: none;
+            color: white;
+            font-weight: 700;
+            font-size: 0.86rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-modal-submit:hover {
+            filter: brightness(1.1);
+        }
+
+        /* 4.5.3 Pomodoro Focus Timer */
+        .timer-display {
+            text-align: center;
+            padding: 16px 0;
+        }
+
+        .timer-time {
+            font-family: 'JetBrains Mono', Consolas, monospace;
+            font-size: clamp(3.0rem, 6vh, 4.2rem);
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            color: var(--accent-primary);
+            line-height: 1;
+            margin-bottom: 8px;
+            text-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .timer-mode-chips {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .timer-chip {
+            padding: 5px 13px;
+            border-radius: var(--radius-full);
+            background: var(--pill-bg);
+            border: 1px solid var(--card-border);
+            font-size: 0.76rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .timer-chip.active {
+            background: var(--accent-primary);
+            color: white;
+            border-color: transparent;
+        }
+
+        .timer-controls {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .btn-timer-action {
+            padding: 10px 24px;
+            border-radius: var(--radius-full);
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .btn-timer-primary {
+            background: var(--accent-primary);
+            color: white;
+        }
+
+        .btn-timer-secondary {
+            background: var(--pill-bg);
+            color: var(--text-secondary);
+            border: 1px solid var(--card-border);
+        }
+
+        /* 4.5.2 Word of the Day Vocab Booster */
+        .vocab-box {
+            background: var(--input-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-md);
+            padding: 18px;
+            position: relative;
+        }
+
+        .vocab-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .vocab-word {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--accent-primary);
+        }
+
+        .vocab-pos {
+            font-size: 0.74rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 2px 8px;
+            border-radius: var(--radius-full);
+            background: rgba(59, 130, 246, 0.15);
+            color: var(--accent-primary);
+        }
+
+        .vocab-pronounce {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .btn-speak {
+            background: none;
+            border: none;
+            color: var(--accent-primary);
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .vocab-def {
+            font-size: 0.92rem;
+            line-height: 1.5;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        .vocab-example {
+            font-size: 0.84rem;
+            font-style: italic;
+            color: var(--text-secondary);
+            border-left: 3px solid var(--accent-primary);
+            padding-left: 10px;
+        }
+
+        /* 4.5.4 Tabbed CBSE Grammar Cheat Sheet */
+        .grammar-tabs {
+            display: flex;
+            gap: 6px;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 8px;
+            margin-bottom: 14px;
+            overflow-x: auto;
+        }
+
+        .g-tab-btn {
+            padding: 5px 12px;
+            border-radius: var(--radius-sm);
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+
+        .g-tab-btn.active {
+            background: var(--accent-primary);
+            color: white;
+        }
+
+        .g-tab-panel {
+            display: none;
+            font-size: 0.86rem;
+            line-height: 1.5;
+            color: var(--text-secondary);
+        }
+
+        .g-tab-panel.active {
+            display: block;
+        }
+
+        .formula-card {
+            background: var(--input-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            padding: 10px 12px;
+            margin-bottom: 8px;
+        }
+
+        .formula-card strong {
+            color: var(--text-primary);
+        }
+
+        /* 4.5.5 Share & QR Code Hub */
+        .share-qr-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 16px;
+        }
+
+        .qr-canvas-wrapper {
+            background: white;
+            padding: 14px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-card);
+            display: inline-block;
+        }
+
+        .qr-canvas-wrapper img {
+            width: 170px;
+            height: 170px;
+            display: block;
+        }
+
+        .share-buttons-row {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+        }
+
+        /* ================== COLOR PALETTE CUSTOMIZER UI ================== */
+        .palette-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        @media (max-width: 480px) {
+            .palette-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .palette-option {
+            background: var(--input-bg);
+            border: 1.5px solid var(--card-border);
+            border-radius: 12px;
+            padding: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .palette-option:hover {
+            border-color: var(--accent-primary);
+            background: var(--bg-card-hover);
+            transform: translateY(-2px);
+        }
+
+        .palette-option.active {
+            border-color: var(--accent-primary);
+            background: var(--bg-card-hover);
+            box-shadow: 0 0 14px var(--accent-glow);
+        }
+
+        .palette-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            min-width: 0;
+        }
+
+        .palette-name {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .palette-tag {
+            font-size: 0.68rem;
+            color: var(--text-muted);
+        }
+
+        .palette-swatches {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
+
+        .swatch-circle {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .palette-check {
+            font-size: 0.9rem;
+            color: var(--accent-primary);
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .palette-option.active .palette-check {
+            opacity: 1;
+        }
+
+        .custom-color-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--input-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 10px 14px;
+            font-size: 0.86rem;
+            color: var(--text-secondary);
+        }
+
+        .custom-color-input-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .custom-color-input-wrapper input[type="color"] {
+            -webkit-appearance: none;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            background: transparent;
+        }
+
+        .custom-color-input-wrapper input[type="color"]::-webkit-color-swatch-wrapper {
+            padding: 0;
+        }
+
+        .custom-color-input-wrapper input[type="color"]::-webkit-color-swatch {
+            border: 2px solid var(--card-border);
+            border-radius: 50%;
+        }
+
+        .custom-color-hex {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        /* 6.0 Toast Notification Engine */
+        .toast-container {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            pointer-events: none;
+        }
+
+        .toast {
+            background: #0F172A;
+            color: white;
+            padding: 11px 18px;
+            border-radius: 10px;
+            font-size: 0.84rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            animation: toastIn 300ms ease-in-out forwards;
+            pointer-events: auto;
+        }
+
+        [data-theme="light"] .toast {
+            background: #1E293B;
+            color: white;
+        }
+
+        .toast.toast-success i {
+            color: var(--accent-primary);
+        }
+
+        @keyframes toastIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px) scale(0.92);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes toastOut {
+            to {
+                opacity: 0;
+                transform: translateY(-10px) scale(0.92);
+            }
+        }
+    </style>
 </head>
+
 <body>
-  <main class="wrap">
+    <!-- Atmospheric Depth Multi-layer Glow Backdrop -->
+    <div class="ambient-glow" aria-hidden="true">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+        <div class="glow-orb orb-3"></div>
+    </div>
 
-    <section class="hero">
-      <div class="brand">
-        <img src="https://sk-mallick.github.io/englishjibi-classes/img/icon.webp" alt="Englishjibi logo" />
-        <div class="brand-text">
-          <h1>Englishjibi Hub</h1>
-          <p>One simple page for parents, students, and teachers to access the portal, study materials, official channels, and important updates.</p>
+    <div class="app-wrapper">
+
+        <!-- 4.2 Live Announcement Marquee -->
+        <div class="notice-ticker" role="region" aria-label="Official Announcements">
+            <span class="ticker-badge">
+                <i class="fa-solid fa-bell"></i> Live Notice
+            </span>
+            <div class="ticker-marquee">
+                <div class="ticker-content">
+                    <span class="ticker-item"><strong>CBSE 2025 Board Prep:</strong> Class 10 & 12 Previous Year Questions & Solutions updated in Question Bank.</span>
+                    <span class="ticker-item"><strong>Daily Quiz:</strong> English Grammar & Vocabulary live test active on Chiranjibi Sir Telegram.</span>
+                    <span class="ticker-item"><strong>New Video Lesson:</strong> Reported Speech & Voice Rules breakdown streaming on YouTube @Englishjibibasic.</span>
+                    <span class="ticker-item"><strong>Question Bank:</strong> CBSE Class 10 & 12 Previous Year Questions & Sets available for faculty!</span>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="hero-badge" aria-label="Features">
-        <i class="fa-solid fa-star"></i>
-        <span>Practice • Reports • Materials • Updates</span>
-      </div>
-      <div class="hero-actions">
-        <a class="btn" href="#links">
-          <i class="fa-solid fa-bolt"></i> Open Quick Links
-        </a>
-      </div>
-    </section>
 
-    <div class="dashboard-grid" id="links">
+        <!-- 4.1 Master Header & Utility Ribbon -->
+        <header class="header">
+            <div class="brand-wrapper">
+                <div class="brand-logo-container">
+                    <img src="https://sk-mallick.github.io/englishjibi-classes/img/icon.webp"
+                        alt="Englishjibi Classes Logo" class="brand-logo" />
+                </div>
+                <div class="brand-info">
+                    <div class="brand-title-row">
+                        <h1 class="brand-title">Englishjibi <span>Hub</span></h1>
+                        <div class="session-status-pill">
+                            <span class="pulse-dot"></span>
+                            <span>Active Session</span>
+                        </div>
+                    </div>
+                    <p class="brand-subtitle">One unified launchpad for students, parents & educators</p>
+                </div>
+            </div>
 
-      <article class="card">
-        <div class="card-top">
-          <div class="card-header">
-            <div class="card-icon icon-student"><i class="fa-solid fa-user-graduate"></i></div>
-            <div class="pill"><i class="fa-solid fa-tag"></i> Students</div>
-          </div>
-          <h3>Student Portal</h3>
-          <p>Login to practise English grammar and CBSE PYQs anytime.</p>
-        </div>
-        <a class="open-link" href="https://englishjibi.wuaze.com/" target="_blank" rel="noopener noreferrer">
-          Open Portal <i class="fa-solid fa-arrow-up-right-from-square"></i>
-        </a>
-      </article>
+            <div class="header-controls">
+                <!-- 4.1.2 Instant Search Field -->
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" id="hubSearch" class="search-input" placeholder="Search resources..."
+                        autocomplete="off" aria-label="Search resources" />
+                    <span class="search-shortcut">/ or Ctrl+K</span>
+                </div>
 
-      <article class="card">
-        <div class="card-top">
-          <div class="card-header">
-            <div class="card-icon icon-web"><i class="fa-solid fa-globe"></i></div>
-            <div class="pill"><i class="fa-solid fa-building"></i> Official</div>
-          </div>
-          <h3>Main Website</h3>
-          <p>Visit the main website for class info and official updates.</p>
-        </div>
-        <a class="open-link" style="background-color: #d97706;" href="https://sk-mallick.github.io/englishjibi-classes" target="_blank" rel="noopener noreferrer">
-          Open Website <i class="fa-solid fa-arrow-up-right-from-square"></i>
-        </a>
-      </article>
+                <!-- 4.1.3 Quick-Action Toolbar -->
+                <button class="btn-tool" onclick="openVocabModal()" title="Daily Vocab Booster (Word of the Day)">
+                    <i class="fa-solid fa-book-sparkles" style="color: var(--accent-primary);"></i>
+                    <span>Word of Day</span>
+                </button>
 
-      <article class="card">
-        <div class="card-top">
-          <div class="card-header">
-            <div class="card-icon icon-admin"><i class="fa-solid fa-shield-halved"></i></div>
-            <div class="pill"><i class="fa-solid fa-lock"></i> Admin</div>
-          </div>
-          <h3>Admin Portal</h3>
-          <p>Manage content, updates, and student information from the dashboard.</p>
-        </div>
-        <a class="open-link" style="background-color: #475569;" href="https://englishjibi.wuaze.com/admin/" target="_blank" rel="noopener noreferrer">
-          Open Portal <i class="fa-solid fa-arrow-up-right-from-square"></i>
-        </a>
-      </article>
+                <button class="btn-tool" onclick="openTimerModal()" title="Study Focus Timer (Pomodoro)">
+                    <i class="fa-solid fa-stopwatch" style="color: #F59E0B;"></i>
+                    <span>Study Timer</span>
+                    <span class="timer-active-badge" id="timerBadge">25m</span>
+                </button>
 
-      <article class="card">
-        <div class="card-top">
-          <div class="card-header">
-            <div class="card-icon icon-bank"><i class="fa-solid fa-book-open"></i></div>
-            <div class="pill"><i class="fa-solid fa-chalkboard-user"></i> Teachers</div>
-          </div>
-          <h3>Question Bank</h3>
-          <p>Access the teachers' question bank for class-wise sets and materials.</p>
-        </div>
-        <a class="open-link" style="background-color: #059669;" href="#" onclick="openPasswordModal(event)">
-          Open Bank <i class="fa-solid fa-lock"></i>
-        </a>
-      </article>
+                <button class="btn-tool" onclick="openGrammarModal()" title="CBSE Grammar Formula Sheet">
+                    <i class="fa-solid fa-file-lines" style="color: #EC4899;"></i>
+                    <span>Grammar</span>
+                </button>
 
-      <article class="card">
-        <div class="card-top">
-          <div class="card-header">
-            <div class="card-icon icon-tg"><i class="fa-brands fa-telegram"></i></div>
-            <div class="pill"><i class="fa-solid fa-bell"></i> Updates</div>
-          </div>
-          <h3>Chiranjibi Sir</h3>
-          <p>Join for vocabulary tests and exam updates.</p>
-        </div>
-        <a class="open-link" style="background-color: #0891b2;" href="https://t.me/englishwithchiranjibisir" target="_blank" rel="noopener noreferrer">
-          Join Telegram <i class="fa-brands fa-telegram"></i>
-        </a>
-      </article>
+                <!-- Color Palette Switcher Trigger -->
+                <button class="btn-tool" onclick="openPaletteModal()" title="Choose & Customize Color Palette">
+                    <i class="fa-solid fa-palette" style="color: var(--accent-primary);"></i>
+                    <span>Palette</span>
+                </button>
 
-      <article class="card">
-        <div class="card-top">
-          <div class="card-header">
-            <div class="card-icon icon-yt"><i class="fa-brands fa-youtube"></i></div>
-            <div class="pill"><i class="fa-solid fa-video"></i> Video</div>
-          </div>
-          <h3>Englishjibi Basic</h3>
-          <p>Watch video lessons for English practice.</p>
-        </div>
-        <a class="open-link" style="background-color: #dc2626;" href="https://www.youtube.com/@Englishjibibasic" target="_blank" rel="noopener noreferrer">
-          Open YouTube <i class="fa-brands fa-youtube"></i>
-        </a>
-      </article>
+                <button class="btn-tool" onclick="openShareModal()" title="Share Hub / QR Code">
+                    <i class="fa-solid fa-qrcode" style="color: #10B981;"></i>
+                    <span>Share</span>
+                </button>
 
-      <article class="card">
-        <div class="card-top">
-          <div class="card-header">
-            <div class="card-icon icon-li"><i class="fa-brands fa-linkedin-in"></i></div>
-            <div class="pill"><i class="fa-solid fa-briefcase"></i> Business</div>
-          </div>
-          <h3>Englishjibi Classes</h3>
-          <p>Follow the official business profile.</p>
-        </div>
-        <a class="open-link" style="background-color: #0284c7;" href="https://www.linkedin.com/company/englishjibi-classes" target="_blank" rel="noopener noreferrer">
-          Open LinkedIn <i class="fa-brands fa-linkedin-in"></i>
-        </a>
-      </article>
+                <!-- Theme Switcher (Persisted in localStorage) -->
+                <button class="btn-tool btn-theme-toggle" id="themeToggleBtn" onclick="toggleTheme()"
+                    title="Toggle Dark / Light Theme" aria-label="Toggle theme">
+                    <i class="fa-solid fa-moon" id="themeIcon"></i>
+                </button>
+
+                <!-- Fullscreen Toggle Button -->
+                <button class="btn-tool btn-theme-toggle" id="fullscreenBtn" onclick="toggleFullscreen()"
+                    title="Toggle Fullscreen (F)" aria-label="Toggle fullscreen">
+                    <i class="fa-solid fa-expand" id="fullscreenIcon"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- 4.3 Category Filter Pills -->
+        <nav class="filter-nav" aria-label="Category Navigation">
+            <button class="filter-chip active" data-category="all" onclick="filterCategory('all', this)">
+                <i class="fa-solid fa-layer-group"></i> All Resources <span class="chip-count" id="countAll">9</span>
+            </button>
+            <button class="filter-chip" data-category="portals" onclick="filterCategory('portals', this)">
+                <i class="fa-solid fa-shield-halved"></i> Portals & Study <span class="chip-count">3</span>
+            </button>
+            <button class="filter-chip" data-category="social" onclick="filterCategory('social', this)">
+                <i class="fa-solid fa-bullhorn"></i> Channels & Social <span class="chip-count">6</span>
+            </button>
+        </nav>
+
+        <!-- 4.4 Resource Cards Grid -->
+        <main class="cards-grid" id="cardsGrid">
+
+            <!-- Card 1: Student Portal -->
+            <article class="hub-card" data-category="portals" data-title="Student Portal" data-keywords="student portal login test grammar cbse pyq practice">
+                <div class="card-top">
+                    <div class="card-meta-row">
+                        <div class="card-icon color-student">
+                            <i class="fa-solid fa-user-graduate"></i>
+                        </div>
+                        <span class="pill-badge"><i class="fa-solid fa-bolt"></i> Students</span>
+                    </div>
+                    <h3 class="card-title">Student Portal</h3>
+                    <p class="card-desc">Login to practise English grammar topics, track scores, and prepare for CBSE examinations.</p>
+                </div>
+                <div class="card-actions">
+                    <a href="https://englishjibi.wuaze.com/" target="_blank" rel="noopener noreferrer"
+                        class="btn-launch color-student">
+                        <span>Open Portal</span> <i class="fa-solid fa-arrow-right btn-arrow"></i>
+                    </a>
+                    <button class="btn-copy-url" onclick="copyLink('https://englishjibi.wuaze.com/')" title="Copy URL">
+                        <i class="fa-regular fa-copy"></i>
+                    </button>
+                </div>
+            </article>
+
+            <!-- Card 2: Question Bank (Password Protected) -->
+            <article class="hub-card" data-category="portals" data-title="Question Bank" data-keywords="question bank pyq cbse teachers sets all sets questions answers">
+                <div class="card-top">
+                    <div class="card-meta-row">
+                        <div class="card-icon color-bank">
+                            <i class="fa-solid fa-book-open"></i>
+                        </div>
+                        <span class="pill-badge"><i class="fa-solid fa-key"></i> Teachers</span>
+                    </div>
+                    <h3 class="card-title">Question Bank</h3>
+                    <p class="card-desc">Access teachers' question bank with class-wise sets, answer keys, and previous board archives.</p>
+                </div>
+                <div class="card-actions">
+                    <button onclick="openPasswordModal(event)" class="btn-launch color-bank">
+                        <span>Access Bank</span> <i class="fa-solid fa-lock btn-arrow"></i>
+                    </button>
+                    <button class="btn-copy-url" onclick="promptBankShare()" title="Question Bank Info">
+                        <i class="fa-solid fa-circle-info"></i>
+                    </button>
+                </div>
+            </article>
+
+            <!-- Card 3: Official Main Website -->
+            <article class="hub-card" data-category="social" data-title="Official Website" data-keywords="englishjibi classes official website syllabus admissions chiranjibi sir">
+                <div class="card-top">
+                    <div class="card-meta-row">
+                        <div class="card-icon color-website">
+                            <i class="fa-solid fa-globe"></i>
+                        </div>
+                        <span class="pill-badge"><i class="fa-solid fa-building"></i> Official</span>
+                    </div>
+                    <h3 class="card-title">Official Website</h3>
+                    <p class="card-desc">Visit the official Englishjibi website for classroom batches, syllabus details, and notifications.</p>
+                </div>
+                <div class="card-actions">
+                    <a href="https://sk-mallick.github.io/englishjibi-classes" target="_blank" rel="noopener noreferrer"
+                        class="btn-launch color-website">
+                        <span>Visit Site</span> <i class="fa-solid fa-arrow-right btn-arrow"></i>
+                    </a>
+                    <button class="btn-copy-url" onclick="copyLink('https://sk-mallick.github.io/englishjibi-classes')" title="Copy URL">
+                        <i class="fa-regular fa-copy"></i>
+                    </button>
+                </div>
+            </article>
+
+            <!-- Card 4: Teacher Admin Portal -->
+            <article class="hub-card" data-category="portals" data-title="Teacher Admin" data-keywords="admin management dashboard teachers content records faculty controls">
+                <div class="card-top">
+                    <div class="card-meta-row">
+                        <div class="card-icon color-admin">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <span class="pill-badge"><i class="fa-solid fa-lock"></i> Admin Only</span>
+                    </div>
+                    <h3 class="card-title">Teacher Admin</h3>
+                    <p class="card-desc">Administrative hub to manage class syllabi, student records, assignments, and test series.</p>
+                </div>
+                <div class="card-actions">
+                    <a href="https://englishjibi.wuaze.com/admin/" target="_blank" rel="noopener noreferrer"
+                        class="btn-launch color-admin">
+                        <span>Login Portal</span> <i class="fa-solid fa-arrow-right btn-arrow"></i>
+                    </a>
+                    <button class="btn-copy-url" onclick="copyLink('https://englishjibi.wuaze.com/admin/')" title="Copy URL">
+                        <i class="fa-regular fa-copy"></i>
+                    </button>
+                </div>
+            </article>
+
+            <!-- Card 5: Englishjibi Classes (YouTube) -->
+            <article class="hub-card" data-category="social" data-title="Englishjibi Classes YouTube" data-keywords="youtube video lessons lectures cbse english syllabus englishjibi classes official channel">
+                <div class="card-top">
+                    <div class="card-meta-row">
+                        <div class="card-icon color-youtube">
+                            <i class="fa-brands fa-youtube"></i>
+                        </div>
+                        <span class="pill-badge"><i class="fa-solid fa-video"></i> Official YT</span>
+                    </div>
+                    <h3 class="card-title">Englishjibi Classes</h3>
+                    <p class="card-desc">Watch classroom lectures, CBSE syllabus strategies, and board preparation masterclasses.</p>
+                </div>
+                <div class="card-actions">
+                    <a href="https://www.youtube.com/@ENGLISHJIBICLASSES" target="_blank" rel="noopener noreferrer"
+                        class="btn-launch color-youtube">
+                        <span>Watch Channel</span> <i class="fa-solid fa-arrow-right btn-arrow"></i>
+                    </a>
+                    <button class="btn-copy-url" onclick="copyLink('https://www.youtube.com/@ENGLISHJIBICLASSES')" title="Copy URL">
+                        <i class="fa-regular fa-copy"></i>
+                    </button>
+                </div>
+            </article>
+
+            <!-- Card 6: Englishjibi Basic (YouTube) -->
+            <article class="hub-card" data-category="social" data-title="Englishjibi Basic YouTube" data-keywords="youtube basic grammar lessons foundation spoken english tutorials chiranjibi sir">
+                <div class="card-top">
+                    <div class="card-meta-row">
+                        <div class="card-icon color-youtube">
+                            <i class="fa-brands fa-youtube"></i>
+                        </div>
+                        <span class="pill-badge"><i class="fa-solid fa-play"></i> Basics YT</span>
+                    </div>
+                    <h3 class="card-title">Englishjibi Basic</h3>
+                    <p class="card-desc">Master English fundamentals, grammar concepts, and foundation spoken language lessons.</p>
+                </div>
+                <div class="card-actions">
+                    <a href="https://www.youtube.com/channel/UCpPk-QX_mwHGKEyv-WAbHrQ" target="_blank" rel="noopener noreferrer"
+                        class="btn-launch color-youtube">
+                        <span>Watch Lessons</span> <i class="fa-solid fa-arrow-right btn-arrow"></i>
+                    </a>
+                    <button class="btn-copy-url" onclick="copyLink('https://www.youtube.com/channel/UCpPk-QX_mwHGKEyv-WAbHrQ')" title="Copy URL">
+                        <i class="fa-regular fa-copy"></i>
+                    </button>
+                </div>
+            </article>
+
+            <!-- Card 7: Englishjibi Instagram -->
+            <article class="hub-card" data-category="social" data-title="Englishjibi Instagram" data-keywords="instagram reels daily vocab grammar tips shorts social englishjibi classes">
+                <div class="card-top">
+                    <div class="card-meta-row">
+                        <div class="card-icon color-instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </div>
+                        <span class="pill-badge"><i class="fa-solid fa-camera"></i> Instagram</span>
+                    </div>
+                    <h3 class="card-title">Englishjibi Classes</h3>
+                    <p class="card-desc">Follow for daily vocabulary reels, classroom moments, quiz shorts, and event updates.</p>
+                </div>
+                <div class="card-actions">
+                    <a href="https://www.instagram.com/englishjibi_classes/" target="_blank" rel="noopener noreferrer"
+                        class="btn-launch color-instagram">
+                        <span>Follow Page</span> <i class="fa-solid fa-arrow-right btn-arrow"></i>
+                    </a>
+                    <button class="btn-copy-url" onclick="copyLink('https://www.instagram.com/englishjibi_classes/')" title="Copy URL">
+                        <i class="fa-regular fa-copy"></i>
+                    </button>
+                </div>
+            </article>
+
+            <!-- Card 8: Chiranjibi Sir Telegram -->
+            <article class="hub-card" data-category="social" data-title="Chiranjibi Sir Telegram" data-keywords="telegram chirp daily vocab test quiz notifications chiranjibi sir channel">
+                <div class="card-top">
+                    <div class="card-meta-row">
+                        <div class="card-icon color-telegram">
+                            <i class="fa-brands fa-telegram"></i>
+                        </div>
+                        <span class="pill-badge"><i class="fa-solid fa-bell"></i> Broadcast</span>
+                    </div>
+                    <h3 class="card-title">Chiranjibi Sir</h3>
+                    <p class="card-desc">Join the official Telegram broadcast channel for vocabulary quizzes, lecture notes, and announcements.</p>
+                </div>
+                <div class="card-actions">
+                    <a href="https://t.me/englishwithchiranjibisir" target="_blank" rel="noopener noreferrer"
+                        class="btn-launch color-telegram">
+                        <span>Join Channel</span> <i class="fa-solid fa-arrow-right btn-arrow"></i>
+                    </a>
+                    <button class="btn-copy-url" onclick="copyLink('https://t.me/englishwithchiranjibisir')" title="Copy URL">
+                        <i class="fa-regular fa-copy"></i>
+                    </button>
+                </div>
+            </article>
+
+            <!-- Card 9: LinkedIn Company Profile -->
+            <article class="hub-card" data-category="social" data-title="Englishjibi LinkedIn" data-keywords="linkedin organization business careers faculty institutional updates">
+                <div class="card-top">
+                    <div class="card-meta-row">
+                        <div class="card-icon color-linkedin">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </div>
+                        <span class="pill-badge"><i class="fa-solid fa-briefcase"></i> Network</span>
+                    </div>
+                    <h3 class="card-title">Englishjibi Classes</h3>
+                    <p class="card-desc">Connect with our professional institute profile for educational updates, partnerships, and achievements.</p>
+                </div>
+                <div class="card-actions">
+                    <a href="https://www.linkedin.com/company/englishjibi-classes" target="_blank" rel="noopener noreferrer"
+                        class="btn-launch color-linkedin">
+                        <span>Connect</span> <i class="fa-solid fa-arrow-right btn-arrow"></i>
+                    </a>
+                    <button class="btn-copy-url" onclick="copyLink('https://www.linkedin.com/company/englishjibi-classes')" title="Copy URL">
+                        <i class="fa-regular fa-copy"></i>
+                    </button>
+                </div>
+            </article>
+
+            <!-- Empty Search State -->
+            <div class="empty-state" id="emptySearch">
+                <i class="fa-solid fa-folder-open"></i>
+                <h3>No resources found</h3>
+                <p>Try searching for "Student", "Question Bank", "ID Card", or "YouTube".</p>
+            </div>
+
+        </main>
+
+        <!-- 7.0 Master Footer & Author Attribution -->
+        <footer class="app-footer">
+            <div class="footer-left">
+                <span class="footer-pill">
+                    <i class="fa-solid fa-heart" style="color: #EF4444;"></i> Englishjibi Classes
+                </span>
+                <span>•</span>
+                <span>Designed & Engineered by <strong>Subham Kumar Mallick</strong></span>
+            </div>
+            <div class="footer-links">
+                <span class="footer-link" onclick="openPaletteModal()"><i class="fa-solid fa-palette"></i> Palette</span>
+                <span class="footer-link" onclick="openGrammarModal()"><i class="fa-solid fa-book-bookmark"></i> Grammar Guide</span>
+                <span class="footer-link" onclick="openVocabModal()"><i class="fa-solid fa-spell-check"></i> Vocab</span>
+                <span class="footer-link" onclick="openTimerModal()"><i class="fa-solid fa-stopwatch"></i> Focus</span>
+                <span class="footer-link" onclick="openShareModal()"><i class="fa-solid fa-share-nodes"></i> Share Hub</span>
+                <span class="footer-link" onclick="toggleFullscreen()"><i class="fa-solid fa-expand" id="footerFsIcon"></i><span id="footerFsText"> Fullscreen</span></span>
+            </div>
+        </footer>
 
     </div>
 
-    <div class="footer">
-      <span><i class="fa-solid fa-heart" style="color: #475569;"></i></span>
-      Built as a clean, shareable index page for mobile and desktop.
+    <!-- ==================== INTERACTIVE MODALS ==================== -->
+
+    <!-- 1. 🔒 Question Bank Password Gate Modal -->
+    <div class="modal-overlay" id="passwordModal" onclick="closeModal(event, 'passwordModal')">
+        <div class="modal-dialog" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3 class="modal-title"><i class="fa-solid fa-lock"></i> Teacher Access</h3>
+                <button class="modal-close" onclick="closeModalDirect('passwordModal')" aria-label="Close modal">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p style="color: var(--text-secondary); margin-bottom: 16px; font-size: 0.9rem; line-height: 1.5;">
+                    The Question Bank contains confidential class sets and marking schemes. Please enter faculty key to unlock.
+                </p>
+                <div class="form-group">
+                    <label class="form-label" for="qbPassword">Faculty Password</label>
+                    <div class="input-password-wrapper">
+                        <input type="password" id="qbPassword" class="form-control" placeholder="Enter faculty password..."
+                            onkeypress="handleEnter(event)" autocomplete="current-password" />
+                        <button type="button" class="btn-toggle-pw" onclick="togglePasswordVisibility('qbPassword', this)" aria-label="Show or hide password">
+                            <i class="fa-regular fa-eye"></i>
+                        </button>
+                    </div>
+                    <div id="modalError" class="modal-error">
+                        <i class="fa-solid fa-circle-exclamation"></i> Incorrect password. Please try again or contact Subham.
+                    </div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: var(--text-muted);">
+                    <input type="checkbox" id="rememberAuth" style="cursor: pointer;" />
+                    <label for="rememberAuth" style="cursor: pointer;">Remember authorization for this session</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-modal-cancel" onclick="closeModalDirect('passwordModal')">Cancel</button>
+                <button class="btn-modal-submit" onclick="verifyPassword()">Unlock & Open</button>
+            </div>
+        </div>
     </div>
-  </main>
 
-  <!-- Password Modal -->
-  <div class="modal-overlay" id="passwordModal" onclick="closeModal(event)">
-    <div class="modal-content" onclick="event.stopPropagation()">
-      <h3><i class="fa-solid fa-lock"></i> Teacher Access</h3>
-      <p>Please enter the secure password to access the Question Bank.</p>
-      <input type="password" id="qbPassword" placeholder="Enter Password" onkeypress="handleEnter(event)" />
-      <div id="modalError" class="modal-error"><i class="fa-solid fa-circle-exclamation"></i> Incorrect password. Please try again.</div>
-      <div class="modal-actions">
-        <button class="btn btn-modal-cancel" onclick="closeModal()">Cancel</button>
-        <button class="btn btn-primary" onclick="verifyPassword()">Submit</button>
-      </div>
+    <!-- 2. ⏱️ Focus & Study Pomodoro Timer -->
+    <div class="modal-overlay" id="timerModal" onclick="closeModal(event, 'timerModal')">
+        <div class="modal-dialog" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3 class="modal-title"><i class="fa-solid fa-stopwatch"></i> Study Focus Timer</h3>
+                <button class="modal-close" onclick="closeModalDirect('timerModal')">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="timer-mode-chips">
+                    <span class="timer-chip active" id="chipPomo" onclick="setTimerMode(25, this)">Focus (25m)</span>
+                    <span class="timer-chip" id="chipShort" onclick="setTimerMode(5, this)">Short Break (5m)</span>
+                    <span class="timer-chip" id="chipLong" onclick="setTimerMode(15, this)">Revision (15m)</span>
+                </div>
+                <div class="timer-display">
+                    <div class="timer-time" id="timerTime">25:00</div>
+                    <p style="font-size: 0.82rem; color: var(--text-secondary);" id="timerQuote">
+                        "Small daily improvements over time lead to stunning results."
+                    </p>
+                </div>
+                <div class="timer-controls">
+                    <button class="btn-timer-action btn-timer-primary" id="btnTimerToggle" onclick="toggleTimer()">
+                        <i class="fa-solid fa-play" id="timerToggleIcon"></i> Start Focus
+                    </button>
+                    <button class="btn-timer-action btn-timer-secondary" onclick="resetTimer()">
+                        <i class="fa-solid fa-rotate-left"></i> Reset
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <script>
-    function openPasswordModal(e) {
-      e.preventDefault();
-      document.getElementById('passwordModal').style.display = 'flex';
-      document.getElementById('qbPassword').value = '';
-      document.getElementById('modalError').style.display = 'none';
-      setTimeout(() => document.getElementById('qbPassword').focus(), 100);
-    }
+    <!-- 3. 📖 Word of the Day (Vocab Booster) -->
+    <div class="modal-overlay" id="vocabModal" onclick="closeModal(event, 'vocabModal')">
+        <div class="modal-dialog" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3 class="modal-title"><i class="fa-solid fa-book-sparkles"></i> Daily Vocab Booster</h3>
+                <button class="modal-close" onclick="closeModalDirect('vocabModal')">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="vocab-box">
+                    <div class="vocab-header">
+                        <span class="vocab-word" id="vWord">Eloquent</span>
+                        <span class="vocab-pos" id="vPos">Adjective</span>
+                    </div>
+                    <div class="vocab-pronounce">
+                        <span id="vPron">/ˈel.ə.kwənt/</span>
+                        <button class="btn-speak" onclick="pronounceWord()" title="Listen to pronunciation via Web Speech API">
+                            <i class="fa-solid fa-volume-high"></i>
+                        </button>
+                    </div>
+                    <div class="vocab-def" id="vDef">Fluent or persuasive in speaking or writing; clearly expressing feelings.</div>
+                    <div class="vocab-example" id="vExample">"The student gave an eloquent presentation on English literature in the CBSE symposium."</div>
+                </div>
+            </div>
+            <div class="modal-footer" style="justify-content: space-between;">
+                <button class="btn-modal-cancel" onclick="pronounceWord()">
+                    <i class="fa-solid fa-volume-high"></i> Pronounce
+                </button>
+                <button class="btn-modal-submit" onclick="nextVocabWord()">
+                    Next Word <i class="fa-solid fa-shuffle"></i>
+                </button>
+            </div>
+        </div>
+    </div>
 
-    function closeModal(e) {
-      if (e && e.target.id !== 'passwordModal') return;
-      document.getElementById('passwordModal').style.display = 'none';
-    }
+    <!-- 4. 📝 Tabbed CBSE English Grammar Cheat Sheet -->
+    <div class="modal-overlay" id="grammarModal" onclick="closeModal(event, 'grammarModal')">
+        <div class="modal-dialog" style="max-width: 620px;" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3 class="modal-title"><i class="fa-solid fa-graduation-cap"></i> CBSE English Grammar Formula Sheet</h3>
+                <button class="modal-close" onclick="closeModalDirect('grammarModal')">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="grammar-tabs">
+                    <button class="g-tab-btn active" onclick="switchGrammarTab('tab-tenses', this)">Tense Rules</button>
+                    <button class="g-tab-btn" onclick="switchGrammarTab('tab-voice', this)">Active & Passive</button>
+                    <button class="g-tab-btn" onclick="switchGrammarTab('tab-speech', this)">Reported Speech</button>
+                    <button class="g-tab-btn" onclick="switchGrammarTab('tab-modals', this)">Modals & Determiners</button>
+                </div>
 
-    function verifyPassword() {
-      const pw = document.getElementById('qbPassword').value;
-      if (pw === 'EJ2024') {
-        window.open('https://sk-mallick.github.io/ALL-SETS/', '_blank');
-        closeModal();
-      } else {
-        document.getElementById('modalError').style.display = 'block';
-      }
-    }
+                <!-- Tab 1: Tenses -->
+                <div class="g-tab-panel active" id="tab-tenses">
+                    <div class="formula-card">
+                        <strong>Present Simple:</strong> Subject + V1(s/es) + Object. (e.g., <em>She writes essays.</em>)
+                    </div>
+                    <div class="formula-card">
+                        <strong>Present Continuous:</strong> Subject + is/am/are + V1-ing. (e.g., <em>They are preparing sets.</em>)
+                    </div>
+                    <div class="formula-card">
+                        <strong>Present Perfect:</strong> Subject + has/have + V3. (e.g., <em>He has completed the chapter.</em>)
+                    </div>
+                    <div class="formula-card">
+                        <strong>Past Simple:</strong> Subject + V2 + Object. (e.g., <em>The committee passed the resolution.</em>)
+                    </div>
+                    <div class="formula-card">
+                        <strong>Future Simple:</strong> Subject + will/shall + V1. (e.g., <em>We shall conquer the boards.</em>)
+                    </div>
+                </div>
 
-    function handleEnter(e) {
-      if (e.key === 'Enter') {
-        verifyPassword();
-      }
-    }
-  </script>
+                <!-- Tab 2: Voice Change -->
+                <div class="g-tab-panel" id="tab-voice">
+                    <div class="formula-card">
+                        <strong>General Formula:</strong> Object + Auxiliary (be) + V3 (Past Participle) + by + Subject.
+                    </div>
+                    <div class="formula-card">
+                        <strong>Assertive:</strong> "Chiranjibi Sir teaches grammar." &rarr; "Grammar is taught by Chiranjibi Sir."
+                    </div>
+                    <div class="formula-card">
+                        <strong>Continuous:</strong> "Students are taking the test." &rarr; "The test is being taken by students."
+                    </div>
+                    <div class="formula-card">
+                        <strong>Imperative:</strong> "Open the portal." &rarr; "Let the portal be opened."
+                    </div>
+                </div>
+
+                <!-- Tab 3: Reported Speech -->
+                <div class="g-tab-panel" id="tab-speech">
+                    <div class="formula-card">
+                        <strong>Tense Shifts:</strong> Present Simple &rarr; Past Simple | Present Continuous &rarr; Past Continuous | Past Simple &rarr; Past Perfect.
+                    </div>
+                    <div class="formula-card">
+                        <strong>Modals Shift:</strong> Will &rarr; Would | Can &rarr; Could | May &rarr; Might | Shall &rarr; Should.
+                    </div>
+                    <div class="formula-card">
+                        <strong>Time Expressions:</strong> Today &rarr; that day | Tomorrow &rarr; the next day | Now &rarr; then | Here &rarr; there.
+                    </div>
+                </div>
+
+                <!-- Tab 4: Modals & Determiners -->
+                <div class="g-tab-panel" id="tab-modals">
+                    <div class="formula-card">
+                        <strong>Must vs. Should:</strong> <em>Must</em> implies legal / strict moral obligation or high certainty; <em>Should</em> indicates advisory recommendation.
+                    </div>
+                    <div class="formula-card">
+                        <strong>Few vs. A Few:</strong> <em>Few</em> denotes hardly any (negative sense); <em>A few</em> denotes some quantity (positive sense) for countable nouns.
+                    </div>
+                    <div class="formula-card">
+                        <strong>Little vs. A Little:</strong> <em>Little</em> denotes almost none; <em>A little</em> denotes a small amount for uncountable nouns.
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-modal-submit" onclick="closeModalDirect('grammarModal')">Close Sheet</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. 🔗 Instant Share & QR Code Hub -->
+    <div class="modal-overlay" id="shareModal" onclick="closeModal(event, 'shareModal')">
+        <div class="modal-dialog" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3 class="modal-title"><i class="fa-solid fa-share-nodes"></i> Share Englishjibi Hub</h3>
+                <button class="modal-close" onclick="closeModalDirect('shareModal')">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="share-qr-container">
+                    <div class="qr-canvas-wrapper">
+                        <img id="qrCodeImg" src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https%3A%2F%2Fsk-mallick.github.io%2Fenglishjibi-classes" alt="QR Code for Hub" />
+                    </div>
+                    <p style="font-size: 0.84rem; color: var(--text-secondary);">
+                        Scan with your phone camera to bookmark the Englishjibi Hub on mobile.
+                    </p>
+                    <div class="share-buttons-row">
+                        <button class="btn-launch color-student" onclick="copyCurrentHubLink()" style="width: 100%;">
+                            <i class="fa-regular fa-copy"></i> Copy Hub URL
+                        </button>
+                        <button class="btn-launch color-telegram" onclick="shareWhatsApp()" style="width: 100%; background: #25D366;">
+                            <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6. 🎨 Interactive Color Palette Customizer Modal -->
+    <div class="modal-overlay" id="paletteModal" onclick="closeModal(event, 'paletteModal')">
+        <div class="modal-dialog" style="max-width: 520px;" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3 class="modal-title"><i class="fa-solid fa-palette"></i> Choose Color Palette</h3>
+                <button class="modal-close" onclick="closeModalDirect('paletteModal')">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p style="color: var(--text-secondary); margin-bottom: 16px; font-size: 0.88rem; line-height: 1.5;">
+                    Personalize your hub with an interactive color theme. Selection is instantly applied and saved on this device.
+                </p>
+                <div class="palette-grid">
+                    <!-- Palette 1: Royal Sapphire -->
+                    <div class="palette-option active" data-palette-id="sapphire" onclick="applyPalette('sapphire', this)">
+                        <div class="palette-swatches">
+                            <span class="swatch-circle" style="background: #3B82F6;"></span>
+                            <span class="swatch-circle" style="background: #1D4ED8;"></span>
+                            <span class="swatch-circle" style="background: #93C5FD;"></span>
+                        </div>
+                        <div class="palette-meta">
+                            <span class="palette-name">Royal Sapphire</span>
+                            <span class="palette-tag">Classic Blue</span>
+                        </div>
+                        <i class="fa-solid fa-circle-check palette-check"></i>
+                    </div>
+
+                    <!-- Palette 2: Emerald Forest -->
+                    <div class="palette-option" data-palette-id="emerald" onclick="applyPalette('emerald', this)">
+                        <div class="palette-swatches">
+                            <span class="swatch-circle" style="background: #10B981;"></span>
+                            <span class="swatch-circle" style="background: #047857;"></span>
+                            <span class="swatch-circle" style="background: #6EE7B7;"></span>
+                        </div>
+                        <div class="palette-meta">
+                            <span class="palette-name">Emerald Forest</span>
+                            <span class="palette-tag">Vibrant Mint</span>
+                        </div>
+                        <i class="fa-solid fa-circle-check palette-check"></i>
+                    </div>
+
+                    <!-- Palette 3: Cyber Violet -->
+                    <div class="palette-option" data-palette-id="violet" onclick="applyPalette('violet', this)">
+                        <div class="palette-swatches">
+                            <span class="swatch-circle" style="background: #8B5CF6;"></span>
+                            <span class="swatch-circle" style="background: #6D28D9;"></span>
+                            <span class="swatch-circle" style="background: #C4B5FD;"></span>
+                        </div>
+                        <div class="palette-meta">
+                            <span class="palette-name">Cyber Violet</span>
+                            <span class="palette-tag">Electric Purple</span>
+                        </div>
+                        <i class="fa-solid fa-circle-check palette-check"></i>
+                    </div>
+
+                    <!-- Palette 4: Sunset Amber -->
+                    <div class="palette-option" data-palette-id="amber" onclick="applyPalette('amber', this)">
+                        <div class="palette-swatches">
+                            <span class="swatch-circle" style="background: #F59E0B;"></span>
+                            <span class="swatch-circle" style="background: #B45309;"></span>
+                            <span class="swatch-circle" style="background: #FDE68A;"></span>
+                        </div>
+                        <div class="palette-meta">
+                            <span class="palette-name">Sunset Amber</span>
+                            <span class="palette-tag">Solar Warm</span>
+                        </div>
+                        <i class="fa-solid fa-circle-check palette-check"></i>
+                    </div>
+
+                    <!-- Palette 5: Rose Crimson -->
+                    <div class="palette-option" data-palette-id="rose" onclick="applyPalette('rose', this)">
+                        <div class="palette-swatches">
+                            <span class="swatch-circle" style="background: #F43F5E;"></span>
+                            <span class="swatch-circle" style="background: #BE123C;"></span>
+                            <span class="swatch-circle" style="background: #FDA4AF;"></span>
+                        </div>
+                        <div class="palette-meta">
+                            <span class="palette-name">Rose Crimson</span>
+                            <span class="palette-tag">Vivid Ruby</span>
+                        </div>
+                        <i class="fa-solid fa-circle-check palette-check"></i>
+                    </div>
+
+                    <!-- Palette 6: Electric Teal -->
+                    <div class="palette-option" data-palette-id="cyan" onclick="applyPalette('cyan', this)">
+                        <div class="palette-swatches">
+                            <span class="swatch-circle" style="background: #06B6D4;"></span>
+                            <span class="swatch-circle" style="background: #0E7490;"></span>
+                            <span class="swatch-circle" style="background: #A5F3FC;"></span>
+                        </div>
+                        <div class="palette-meta">
+                            <span class="palette-name">Electric Teal</span>
+                            <span class="palette-tag">Cyber Cyan</span>
+                        </div>
+                        <i class="fa-solid fa-circle-check palette-check"></i>
+                    </div>
+                </div>
+
+                <!-- Custom Accent Color Picker -->
+                <div class="custom-color-row">
+                    <label for="customAccentInput"><i class="fa-solid fa-eye-dropper"></i> Custom Hex Accent:</label>
+                    <div class="custom-color-input-wrapper">
+                        <input type="color" id="customAccentInput" value="#3B82F6" oninput="applyCustomColor(this.value)" />
+                        <span class="custom-color-hex" id="customColorHex">#3B82F6</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-modal-cancel" onclick="resetDefaultPalette()">Reset Default</button>
+                <button class="btn-modal-submit" onclick="closeModalDirect('paletteModal')">Save & Apply</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6.0 Toast Notification Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- ==================== LOGIC & SCRIPTS ==================== -->
+    <script>
+        // ------------------ State & Persistence ------------------
+        const QB_CORRECT_PASS = '454';
+        const QB_TARGET_URL = 'https://sk-mallick.github.io/ALL-SETS/';
+        let isQBAuthenticated = sessionStorage.getItem('ej_qb_auth') === 'true';
+
+        // ------------------ Theme Management ------------------
+        function initTheme() {
+            const savedTheme = localStorage.getItem('ej_theme') || 'dark';
+            applyTheme(savedTheme);
+            initPalette();
+        }
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            applyTheme(newTheme);
+            localStorage.setItem('ej_theme', newTheme);
+            showToast(newTheme === 'dark' ? '🌙 Aurora Dark Mode' : '☀️ Clean Slate Light Mode');
+        }
+
+        function applyTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            const icon = document.getElementById('themeIcon');
+            if (icon) {
+                icon.className = theme === 'dark' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
+            }
+            const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+            if (themeColorMeta) {
+                themeColorMeta.setAttribute('content', theme === 'dark' ? '#030712' : '#F1F5F9');
+            }
+        }
+
+        // ------------------ Color Palette Customizer Logic ------------------
+        const paletteNames = {
+            'sapphire': 'Royal Sapphire',
+            'emerald': 'Emerald Forest',
+            'violet': 'Cyber Violet',
+            'amber': 'Sunset Amber',
+            'rose': 'Rose Crimson',
+            'cyan': 'Electric Teal'
+        };
+
+        function initPalette() {
+            const savedCustom = localStorage.getItem('ej_custom_color');
+            const savedPalette = localStorage.getItem('ej_palette') || 'sapphire';
+
+            if (savedPalette === 'custom' && savedCustom) {
+                applyCustomColor(savedCustom, false);
+            } else {
+                applyPalette(savedPalette, null, false);
+            }
+        }
+
+        function openPaletteModal() {
+            document.getElementById('paletteModal').classList.add('active');
+        }
+
+        function applyPalette(paletteId, optionEl, showToastAlert = true) {
+            document.documentElement.setAttribute('data-palette', paletteId);
+            
+            // Clear any custom CSS variables inline
+            document.documentElement.style.removeProperty('--accent-primary');
+            document.documentElement.style.removeProperty('--accent-primary-hover');
+            document.documentElement.style.removeProperty('--accent-glow');
+            document.documentElement.style.removeProperty('--card-border-hover');
+            document.documentElement.style.removeProperty('--orb-1-color');
+            document.documentElement.style.removeProperty('--orb-2-color');
+            document.documentElement.style.removeProperty('--orb-3-color');
+
+            localStorage.setItem('ej_palette', paletteId);
+            localStorage.removeItem('ej_custom_color');
+
+            // Update active state in UI
+            document.querySelectorAll('.palette-option').forEach(opt => {
+                if (opt.getAttribute('data-palette-id') === paletteId) {
+                    opt.classList.add('active');
+                } else {
+                    opt.classList.remove('active');
+                }
+            });
+
+            if (showToastAlert) {
+                const name = paletteNames[paletteId] || paletteId;
+                showToast(`🎨 Theme changed to ${name}!`, 'fa-solid fa-palette');
+            }
+        }
+
+        function applyCustomColor(hex, showToastAlert = true) {
+            document.documentElement.setAttribute('data-palette', 'custom');
+            
+            // Calculate hover color & glow
+            const glow = hexToRgba(hex, 0.35);
+            const borderHover = hexToRgba(hex, 0.45);
+            
+            document.documentElement.style.setProperty('--accent-primary', hex);
+            document.documentElement.style.setProperty('--accent-primary-hover', adjustBrightness(hex, -20));
+            document.documentElement.style.setProperty('--accent-glow', glow);
+            document.documentElement.style.setProperty('--card-border-hover', borderHover);
+            document.documentElement.style.setProperty('--orb-1-color', hex);
+
+            localStorage.setItem('ej_palette', 'custom');
+            localStorage.setItem('ej_custom_color', hex);
+
+            const hexDisplay = document.getElementById('customColorHex');
+            const colorInput = document.getElementById('customAccentInput');
+            if (hexDisplay) hexDisplay.textContent = hex.toUpperCase();
+            if (colorInput && colorInput.value !== hex) colorInput.value = hex;
+
+            document.querySelectorAll('.palette-option').forEach(opt => opt.classList.remove('active'));
+
+            if (showToastAlert) {
+                showToast(`🎨 Custom accent set: ${hex.toUpperCase()}`, 'fa-solid fa-palette');
+            }
+        }
+
+        function resetDefaultPalette() {
+            applyPalette('sapphire', null, true);
+            closeModalDirect('paletteModal');
+        }
+
+        function hexToRgba(hex, alpha) {
+            let c = hex.replace('#', '');
+            if (c.length === 3) {
+                c = c.split('').map(x => x + x).join('');
+            }
+            const r = parseInt(c.substring(0, 2), 16) || 0;
+            const g = parseInt(c.substring(2, 4), 16) || 0;
+            const b = parseInt(c.substring(4, 6), 16) || 0;
+            return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+        }
+
+        function adjustBrightness(hex, percent) {
+            let num = parseInt(hex.replace('#', ''), 16);
+            let amt = Math.round(2.55 * percent);
+            let R = (num >> 16) + amt;
+            let G = (num >> 8 & 0x00FF) + amt;
+            let B = (num & 0x0000FF) + amt;
+            return '#' + (0x1000000 + (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 +
+                (G < 255 ? G < 1 ? 0 : G : 255) * 0x100 +
+                (B < 255 ? B < 1 ? 0 : B : 255)).toString(16).slice(1);
+        }
+
+        // ------------------ Live Search & Filter ------------------
+        const searchInput = document.getElementById('hubSearch');
+        const cards = document.querySelectorAll('.hub-card');
+        const emptySearch = document.getElementById('emptySearch');
+        let currentFilter = 'all';
+
+        if (searchInput) {
+            searchInput.addEventListener('input', applySearchAndFilter);
+        }
+
+        function filterCategory(category, chipElement) {
+            currentFilter = category;
+            document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+            if (chipElement) {
+                chipElement.classList.add('active');
+            }
+            applySearchAndFilter();
+        }
+
+        function applySearchAndFilter() {
+            const query = (searchInput ? searchInput.value : '').toLowerCase().trim();
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const category = card.getAttribute('data-category') || '';
+                const title = (card.getAttribute('data-title') || '').toLowerCase();
+                const keywords = (card.getAttribute('data-keywords') || '').toLowerCase();
+                const textContent = card.innerText.toLowerCase();
+
+                const matchesCategory = (currentFilter === 'all') || (category === currentFilter);
+                const matchesSearch = !query || title.includes(query) || keywords.includes(query) || textContent.includes(query);
+
+                if (matchesCategory && matchesSearch) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            if (emptySearch) {
+                emptySearch.style.display = visibleCount === 0 ? 'block' : 'none';
+            }
+        }
+
+        // ------------------ 4.5.1 Password Protected Question Bank ------------------
+        function openPasswordModal(e) {
+            if (e) e.preventDefault();
+            
+            if (isQBAuthenticated) {
+                window.open(QB_TARGET_URL, '_blank');
+                showToast('Authenticated! Opening Question Bank...', 'fa-solid fa-unlock');
+                return;
+            }
+
+            const modal = document.getElementById('passwordModal');
+            modal.classList.add('active');
+            const passInput = document.getElementById('qbPassword');
+            passInput.value = '';
+            document.getElementById('modalError').style.display = 'none';
+            setTimeout(() => passInput.focus(), 150);
+        }
+
+        function verifyPassword() {
+            const pw = document.getElementById('qbPassword').value.trim();
+            const remember = document.getElementById('rememberAuth').checked;
+
+            if (pw === QB_CORRECT_PASS) {
+                if (remember) {
+                    sessionStorage.setItem('ej_qb_auth', 'true');
+                    isQBAuthenticated = true;
+                }
+                closeModalDirect('passwordModal');
+                window.open(QB_TARGET_URL, '_blank');
+                showToast('Question Bank unlocked successfully!', 'fa-solid fa-circle-check');
+            } else {
+                const err = document.getElementById('modalError');
+                err.style.display = 'flex';
+                err.style.animation = 'none';
+                void err.offsetWidth;
+                err.style.animation = 'shake 350ms ease-in-out';
+                document.getElementById('qbPassword').focus();
+            }
+        }
+
+        function handleEnter(e) {
+            if (e.key === 'Enter') {
+                verifyPassword();
+            }
+        }
+
+        function togglePasswordVisibility(inputId, btn) {
+            const input = document.getElementById(inputId);
+            const icon = btn.querySelector('i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.className = 'fa-regular fa-eye-slash';
+            } else {
+                input.type = 'password';
+                icon.className = 'fa-regular fa-eye';
+            }
+        }
+
+        function promptBankShare() {
+            showToast('Question Bank is reserved for faculty members', 'fa-solid fa-key');
+        }
+
+        // ------------------ Modal Utility ------------------
+        function closeModal(e, modalId) {
+            if (e.target.id === modalId) {
+                closeModalDirect(modalId);
+            }
+        }
+
+        function closeModalDirect(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('active');
+            }
+        }
+
+        // ------------------ 4.5.2 Word of the Day Vocab Booster ------------------
+        const vocabList = [
+            {
+                word: "Eloquent",
+                pos: "Adjective",
+                pron: "/ˈel.ə.kwənt/",
+                def: "Fluent, persuasive, and clear in speech or writing; vividly expressive.",
+                example: "The student presented an eloquent argument during the CBSE inter-school debate."
+            },
+            {
+                word: "Meticulous",
+                pos: "Adjective",
+                pron: "/məˈtɪk.jə.ləs/",
+                def: "Showing great attention to detail; very careful and precise.",
+                example: "Chiranjibi Sir emphasized meticulous revision of grammar rules before the board exam."
+            },
+            {
+                word: "Resilient",
+                pos: "Adjective",
+                pron: "/rɪˈzɪl.jənt/",
+                def: "Able to withstand or recover quickly from difficult conditions or setbacks.",
+                example: "Dedicated students remain resilient even when tackling challenging PYQ papers."
+            },
+            {
+                word: "Ubiquitous",
+                pos: "Adjective",
+                pron: "/juːˈbɪk.wə.təs/",
+                def: "Present, appearing, or found everywhere at the same time.",
+                example: "English has become a ubiquitous global language in academia and industry."
+            },
+            {
+                word: "Pragmatic",
+                pos: "Adjective",
+                pron: "/præɡˈmæt.ɪk/",
+                def: "Dealing with things sensibly and realistically in a way that is based on practical considerations.",
+                example: "Adopting a pragmatic timetable ensures balanced coverage of literature and grammar."
+            },
+            {
+                word: "Exemplary",
+                pos: "Adjective",
+                pron: "/ɪɡˈzem.plər.i/",
+                def: "Serving as a desirable model; representing the best of its kind.",
+                example: "Her exemplary performance in the English board paper earned her the top rank."
+            }
+        ];
+
+        let currentVocabIdx = 0;
+
+        function openVocabModal() {
+            document.getElementById('vocabModal').classList.add('active');
+            renderVocab();
+        }
+
+        function renderVocab() {
+            const v = vocabList[currentVocabIdx];
+            document.getElementById('vWord').textContent = v.word;
+            document.getElementById('vPos').textContent = v.pos;
+            document.getElementById('vPron').textContent = v.pron;
+            document.getElementById('vDef').textContent = v.def;
+            document.getElementById('vExample').textContent = `"${v.example}"`;
+        }
+
+        function nextVocabWord() {
+            currentVocabIdx = (currentVocabIdx + 1) % vocabList.length;
+            renderVocab();
+        }
+
+        function pronounceWord() {
+            const word = vocabList[currentVocabIdx].word;
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(word);
+                utterance.lang = 'en-GB';
+                utterance.rate = 0.9;
+                window.speechSynthesis.speak(utterance);
+            } else {
+                showToast('Speech synthesis not supported on this browser', 'fa-solid fa-volume-xmark');
+            }
+        }
+
+        // ------------------ 4.5.3 Pomodoro Focus Timer ------------------
+        let timerSeconds = 25 * 60;
+        let timerInterval = null;
+        let isTimerRunning = false;
+
+        const studyQuotes = [
+            "\"Small daily improvements over time lead to stunning results.\"",
+            "\"Focus on being productive instead of busy.\"",
+            "\"One chapter at a time, one rule at a time — keep advancing.\"",
+            "\"Your future is created by what you do today, not tomorrow.\""
+        ];
+
+        function openTimerModal() {
+            document.getElementById('timerModal').classList.add('active');
+        }
+
+        function setTimerMode(minutes, chip) {
+            if (timerInterval) clearInterval(timerInterval);
+            isTimerRunning = false;
+            updateTimerControls();
+
+            timerSeconds = minutes * 60;
+            updateTimerDisplay();
+
+            document.querySelectorAll('.timer-chip').forEach(c => c.classList.remove('active'));
+            if (chip) chip.classList.add('active');
+
+            const quoteEl = document.getElementById('timerQuote');
+            if (quoteEl) {
+                quoteEl.textContent = studyQuotes[Math.floor(Math.random() * studyQuotes.length)];
+            }
+        }
+
+        function toggleTimer() {
+            const badge = document.getElementById('timerBadge');
+            if (isTimerRunning) {
+                clearInterval(timerInterval);
+                isTimerRunning = false;
+                if (badge) badge.style.display = 'none';
+                showToast('Study timer paused');
+            } else {
+                isTimerRunning = true;
+                if (badge) badge.style.display = 'inline-block';
+                timerInterval = setInterval(() => {
+                    if (timerSeconds > 0) {
+                        timerSeconds--;
+                        updateTimerDisplay();
+                        if (badge) badge.textContent = `${Math.ceil(timerSeconds / 60)}m`;
+                    } else {
+                        clearInterval(timerInterval);
+                        isTimerRunning = false;
+                        updateTimerControls();
+                        if (badge) badge.style.display = 'none';
+                        showToast('🎉 Time is up! Great focus session.', 'fa-solid fa-trophy');
+                    }
+                }, 1000);
+                showToast('Focus session started! Good luck.', 'fa-solid fa-play');
+            }
+            updateTimerControls();
+        }
+
+        function resetTimer() {
+            if (timerInterval) clearInterval(timerInterval);
+            isTimerRunning = false;
+            const badge = document.getElementById('timerBadge');
+            if (badge) badge.style.display = 'none';
+
+            const activeChip = document.querySelector('.timer-chip.active');
+            if (activeChip && activeChip.textContent.includes('5m')) {
+                timerSeconds = 5 * 60;
+            } else if (activeChip && activeChip.textContent.includes('15m')) {
+                timerSeconds = 15 * 60;
+            } else {
+                timerSeconds = 25 * 60;
+            }
+            updateTimerDisplay();
+            updateTimerControls();
+        }
+
+        function updateTimerDisplay() {
+            const mins = Math.floor(timerSeconds / 60);
+            const secs = timerSeconds % 60;
+            document.getElementById('timerTime').textContent = 
+                `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+        }
+
+        function updateTimerControls() {
+            const btn = document.getElementById('btnTimerToggle');
+            if (isTimerRunning) {
+                btn.innerHTML = '<i class="fa-solid fa-pause"></i> Pause';
+                btn.style.background = '#EAB308';
+            } else {
+                btn.innerHTML = '<i class="fa-solid fa-play"></i> Start Focus';
+                btn.style.background = 'var(--accent-primary)';
+            }
+        }
+
+        // ------------------ 4.5.4 Tabbed Grammar Modal Logic ------------------
+        function openGrammarModal() {
+            document.getElementById('grammarModal').classList.add('active');
+        }
+
+        function switchGrammarTab(panelId, btn) {
+            document.querySelectorAll('.g-tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.g-tab-panel').forEach(p => p.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+            const target = document.getElementById(panelId);
+            if (target) target.classList.add('active');
+        }
+
+        // ------------------ 4.5.5 Share & QR Modal ------------------
+        function openShareModal() {
+            const currentUrl = window.location.href;
+            const qrImg = document.getElementById('qrCodeImg');
+            if (qrImg) {
+                qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(currentUrl)}`;
+            }
+            document.getElementById('shareModal').classList.add('active');
+        }
+
+        function copyCurrentHubLink() {
+            copyLink(window.location.href);
+        }
+
+        function shareWhatsApp() {
+            const text = encodeURIComponent(`Access all Englishjibi classes, student portals, question bank, and study materials here: ${window.location.href}`);
+            window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+        }
+
+        // ------------------ Clipboard Utility & Toast ------------------
+        function copyLink(url) {
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(url).then(() => {
+                    showToast('Link copied to clipboard!', 'fa-regular fa-circle-check');
+                }).catch(() => fallbackCopy(url));
+            } else {
+                fallbackCopy(url);
+            }
+        }
+
+        function fallbackCopy(text) {
+            const temp = document.createElement('input');
+            temp.value = text;
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand('copy');
+            document.body.removeChild(temp);
+            showToast('Link copied to clipboard!', 'fa-regular fa-circle-check');
+        }
+
+        function showToast(message, iconClass = 'fa-solid fa-check') {
+            const container = document.getElementById('toastContainer');
+            if (!container) return;
+
+            const toast = document.createElement('div');
+            toast.className = 'toast toast-success';
+            toast.innerHTML = `<i class="${iconClass}"></i><span>${message}</span>`;
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.animation = 'toastOut 300ms ease-in-out forwards';
+                setTimeout(() => {
+                    if (toast.parentNode) {
+                        toast.parentNode.removeChild(toast);
+                    }
+                }, 300);
+            }, 2800);
+        }
+
+        // ------------------ Fullscreen Mode Toggle ------------------
+        function toggleFullscreen() {
+            const docEl = document.documentElement;
+            const isFs = !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement);
+
+            if (!isFs) {
+                const requestFs = docEl.requestFullscreen || docEl.webkitRequestFullscreen || docEl.mozRequestFullScreen || docEl.msRequestFullscreen;
+                if (requestFs) {
+                    const promise = requestFs.call(docEl);
+                    if (promise && promise.then) {
+                        promise.then(() => {
+                            showToast('🖥️ Fullscreen Mode Enabled', 'fa-solid fa-expand');
+                        }).catch((err) => {
+                            console.warn('Fullscreen request blocked or not allowed:', err);
+                            showToast('Fullscreen mode not permitted by browser', 'fa-solid fa-triangle-exclamation');
+                        });
+                    }
+                } else {
+                    showToast('Fullscreen API not supported in this browser', 'fa-solid fa-triangle-exclamation');
+                }
+            } else {
+                const exitFs = document.exitFullscreen || document.webkitExitFullscreen || document.mozCancelFullScreen || document.msExitFullscreen;
+                if (exitFs) {
+                    const promise = exitFs.call(document);
+                    if (promise && promise.then) {
+                        promise.then(() => {
+                            showToast('Exited Fullscreen Mode', 'fa-solid fa-compress');
+                        }).catch((err) => {
+                            console.warn('Exit fullscreen error:', err);
+                        });
+                    }
+                }
+            }
+        }
+
+        function updateFullscreenUI() {
+            const isFs = !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement);
+            const icon = document.getElementById('fullscreenIcon');
+            const btn = document.getElementById('fullscreenBtn');
+            const footerIcon = document.getElementById('footerFsIcon');
+            const footerText = document.getElementById('footerFsText');
+
+            if (isFs) {
+                if (icon) icon.className = 'fa-solid fa-compress';
+                if (btn) {
+                    btn.title = 'Exit Fullscreen (F)';
+                    btn.setAttribute('aria-label', 'Exit fullscreen');
+                }
+                if (footerIcon) footerIcon.className = 'fa-solid fa-compress';
+                if (footerText) footerText.textContent = ' Exit Fullscreen';
+            } else {
+                if (icon) icon.className = 'fa-solid fa-expand';
+                if (btn) {
+                    btn.title = 'Toggle Fullscreen (F)';
+                    btn.setAttribute('aria-label', 'Toggle fullscreen');
+                }
+                if (footerIcon) footerIcon.className = 'fa-solid fa-expand';
+                if (footerText) footerText.textContent = ' Fullscreen';
+            }
+        }
+
+        ['fullscreenchange', 'webkitfullscreenchange', 'mozfullscreenchange', 'MSFullscreenChange'].forEach(evt => {
+            document.addEventListener(evt, updateFullscreenUI);
+        });
+
+        // ------------------ Keyboard Shortcuts ------------------
+        window.addEventListener('keydown', (e) => {
+            // '/' or 'Ctrl+K' shortcut to search
+            if ((e.key === '/' || (e.ctrlKey && e.key === 'k')) && document.activeElement !== searchInput && !isModalOpen()) {
+                e.preventDefault();
+                if (searchInput) {
+                    searchInput.focus();
+                    searchInput.select();
+                }
+            }
+            // 'F' or 'f' shortcut to toggle fullscreen (when not in text input and no modal open)
+            if ((e.key === 'f' || e.key === 'F') && 
+                document.activeElement !== searchInput && 
+                document.activeElement.tagName !== 'INPUT' && 
+                document.activeElement.tagName !== 'TEXTAREA' && 
+                !isModalOpen()) {
+                e.preventDefault();
+                toggleFullscreen();
+            }
+            // 'Escape' to close modals or clear search
+            if (e.key === 'Escape') {
+                if (isModalOpen()) {
+                    document.querySelectorAll('.modal-overlay.active').forEach(m => m.classList.remove('active'));
+                } else if (searchInput && document.activeElement === searchInput) {
+                    searchInput.value = '';
+                    applySearchAndFilter();
+                    searchInput.blur();
+                }
+            }
+        });
+
+        function isModalOpen() {
+            return document.querySelector('.modal-overlay.active') !== null;
+        }
+
+        // Initialize Theme & Default States on Load
+        document.addEventListener('DOMContentLoaded', () => {
+            initTheme();
+        });
+    </script>
 </body>
+
 </html>
